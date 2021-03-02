@@ -104,11 +104,16 @@ public class VehicleAsker {
                 strX = userScanner.nextLine().trim();
                 if (fileMode) Console.println(strX);
                 x = Float.parseFloat(strX);
+                if (x > MAX_X) throw new NotInDeclaredLimitsException();
                 break;
             } catch (NoSuchElementException exception) {
                 Console.printerror("координата X не распознана!");
                 if (fileMode) throw new IncorrectInputInScriptException();
-            } catch (NumberFormatException exception) {
+            }
+            catch (NotInDeclaredLimitsException exception) {
+                Console.printerror("координата X не может превышать " + MAX_X + "!");
+            }
+            catch (NumberFormatException exception) {
                 Console.printerror("координата X должна быть представлена числом!");
                 if (fileMode) throw new IncorrectInputInScriptException();
             } catch (NullPointerException | IllegalStateException exception) {

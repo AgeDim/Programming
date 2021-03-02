@@ -8,14 +8,22 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.io.FileNotFoundException;
 import java.util.Collection;
+import java.util.NoSuchElementException;
 import java.util.Stack;
 import data.*;
+import exceptions.IncorrectInputInScriptException;
+import exceptions.NotInDeclaredLimitsException;
+import run.App;
+
 /**
  * Operates the file for saving/loading collection.
  */
 public class FileManager {
     private String envVariable;
-
+    private final float MAX_Y = 420;
+    private final int MIN_enginePower = 0;
+    private final int MIN_distanceTravelled = 0;
+    private final float MAX_X = 252;
     public FileManager(String envVariable) {
         this.envVariable = envVariable;
     }
@@ -26,7 +34,7 @@ public class FileManager {
      */
     public void writeCollection(Collection<Vehicle> collection) {
                 String output;
-        try (PrintWriter pw = new PrintWriter(new FileOutputStream(new File(envVariable)))) {
+        try (PrintWriter pw = new PrintWriter(new FileOutputStream(new File("vehicleCollection.csv")))) {
             for (Vehicle vehicle : collection) {
                 output = "" + vehicle.getId() + "," + vehicle.getName() + "," + vehicle.getCoordinates().getX() + "," +
                         vehicle.getCoordinates().getY() + "," + vehicle.getCreationDate() + "," +
@@ -71,6 +79,46 @@ public class FileManager {
             int distanceTravelled = Integer.parseInt(columnList.get(6));
             VehicleType type = VehicleType.valueOf(columnList.get(7));
             FuelType fuelType = columnList.get(8).equals("") ? null : FuelType.valueOf(columnList.get(8).trim());
+            while (true) {
+                try {
+                    if (cordX > MAX_X) {cordX = MAX_X;throw new NotInDeclaredLimitsException();
+                    }
+                    break;
+                }
+                catch (NotInDeclaredLimitsException exception) {
+                    Console.printerror("координата X не может превышать " + MAX_X + "!");
+                    break;
+                }}
+            while (true) {
+                try {
+                    if (cordY > MAX_Y){ cordY = MAX_Y;throw new NotInDeclaredLimitsException();}
+                    break;
+                }
+                catch (NotInDeclaredLimitsException exception) {
+                    Console.printerror("координата Y не может превышать " + MAX_Y + "!");
+                    break;
+                }}
+            while (true) {
+                try {
+                    if (distanceTravelled < MIN_distanceTravelled) {distanceTravelled = 0;throw new NotInDeclaredLimitsException();
+                    }
+                    break;
+                }
+                catch (NotInDeclaredLimitsException exception) {
+                    Console.printerror("Расстояние поездки не может быть меньше нуля!");
+                    break;
+                }}
+            while (true) {
+                try {
+                    if (enginePower < MIN_enginePower) {enginePower = MIN_enginePower;throw new NotInDeclaredLimitsException();
+                    }
+                    break;
+                }
+                catch (NotInDeclaredLimitsException exception) {
+                    Console.printerror("Сила двигателя не может быть меньше нуля!");
+                    break;
+                }}
+
 
             vehicle1.add( new Vehicle(id, name, new Coordinates(cordX, cordY), LocalDateTime.parse(creationDate),
                     enginePower, distanceTravelled, type, fuelType));

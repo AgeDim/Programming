@@ -138,7 +138,7 @@ public class Console {
             case "remove_greater":
                 if (!commandManager.removeGreater(userCommand[1])) return 1;
                 break;
-            case "min_by_Distance_travelled":
+            case "minByDistanceTravelled":
                 if (!commandManager.minByDistanceTravelled(userCommand[1])) return 1;
                 break;
             case "remove_by_EnPow":

@@ -13,7 +13,7 @@ import utility.Console;
         private CollectionManager collectionManager;
 
         public MinByDistanceTravelledCommand(CollectionManager collectionManager) {
-            super("minByDistanceTravelledCommand", "вывести элемент, значение поля Distance Travelled которого минимально");
+            super("minByDistanceTravelled", "вывести элемент, значение поля Distance Travelled которого минимально");
             this.collectionManager = collectionManager;
         }
 
