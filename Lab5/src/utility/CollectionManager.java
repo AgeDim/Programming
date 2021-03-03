@@ -106,7 +106,6 @@ public class CollectionManager {
 
     /**
      * @return Vehicle, who has max EnginePower.
-     * @throws CollectionIsEmptyException If collection is empty.
      */
     public Vehicle GetMax(){
         Vehicle maxVehicle = getFirst();

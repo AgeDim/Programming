@@ -14,7 +14,7 @@ import exceptions.NotInDeclaredLimitsException;
  * Asks a user a vehicle's value.
  */
 public class VehicleAsker {
-    private final float MAX_Y = 420;
+    private final float MAX_Y = 421;
     private final float MAX_X = 252;
     private final int MIN_enginePower = 0;
     private final int MIN_distanceTravelled = 0;

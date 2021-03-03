@@ -5,7 +5,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-
+/**
+ * Parser csv
+ */
 public class Parser {
     /**
      * Parsing csv file
@@ -30,6 +32,10 @@ public class Parser {
 
         return fileLines;
     }
+    /**
+     * Parsing csv file
+     * @return columnList
+     */
     public ArrayList<String> getItems(String fileLine) {
         String[] splitedText = fileLine.split(",", 9);
         ArrayList<String> columnList = new ArrayList<String>();
