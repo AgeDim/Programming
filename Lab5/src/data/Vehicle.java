@@ -13,7 +13,8 @@ public class Vehicle implements Comparable<Vehicle> {
         private VehicleType type; //Поле не может быть null
         private FuelType fuelType; //Поле может быть null
 
-    public Vehicle(int id, String name, Coordinates coordinates, LocalDateTime creationDate, int enginePower, int distanceTravelled, VehicleType type, FuelType fuelType){
+    public Vehicle(int id, String name, Coordinates coordinates, LocalDateTime creationDate,
+    int enginePower, int distanceTravelled, VehicleType type, FuelType fuelType){
     this.id = id;
     this.name = name;
     this.coordinates = coordinates;
