@@ -30,8 +30,8 @@ public class RemoveGreaterCommand extends AbstractCommand {
     @Override
     public boolean execute(String argument) {
         try {
-            if (!argument.isEmpty()) throw new WrongAmountOfElementsException();
-            if (collectionManager.collectionSize() == 0) throw new CollectionIsEmptyException();
+            if (!argument.isEmpty()) {Console.println("использование: '" + getName() + "'");return false;}
+            if (collectionManager.collectionSize() == 0) {Console.printerror("Коллекция пуста!");return false;}
             Vehicle vehicleToFind = new Vehicle(
                     collectionManager.generateNextId(),
                     vehicleAsker.askName(),
@@ -43,17 +43,12 @@ public class RemoveGreaterCommand extends AbstractCommand {
                     vehicleAsker.askFuelType()
             );
             Vehicle vehicleFromCollection = collectionManager.getByValue(vehicleToFind);
-            if (vehicleFromCollection == null) throw new VehicleNotFoundException();
+            if (vehicleFromCollection == null){Console.printerror("vehicle с такими характеристиками в коллекции нет!");return false;}
             collectionManager.removeGreater(vehicleFromCollection);
             Console.println("vehicles успешно удалены!");
             return true;
-        } catch (WrongAmountOfElementsException exception) {
-            Console.println("использование: '" + getName() + "'");
-        } catch (CollectionIsEmptyException exception) {
-            Console.printerror("коллекция пуста!");
-        } catch (VehicleNotFoundException exception) {
-            Console.printerror("vehicle с такими характеристиками в коллекции нет!");
-        } catch (IncorrectInputInScriptException exception) {}
+        }
+        catch (IncorrectInputInScriptException exception) {}
         return false;
     }
 }

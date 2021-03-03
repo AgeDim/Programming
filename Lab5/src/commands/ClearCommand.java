@@ -21,14 +21,11 @@ public class ClearCommand extends AbstractCommand {
      */
     @Override
     public boolean execute(String argument) {
-        try {
-            if (!argument.isEmpty()) throw new WrongAmountOfElementsException();
-            collectionManager.clearCollection();
-            Console.println("коллекция очищена!");
-            return true;
-        } catch (WrongAmountOfElementsException exception) {
-            Console.println("использование: '" + getName() + "'");
-        }
-        return false;
-    }
-}
+            if (!argument.isEmpty()) {Console.println("использование: '" + getName() + "'");return false;}
+            else {
+                collectionManager.clearCollection();
+                Console.println("коллекция очищена!");
+                return true;
+            }
+
+}}

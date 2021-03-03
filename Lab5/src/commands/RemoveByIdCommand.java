@@ -26,22 +26,19 @@ public class RemoveByIdCommand extends AbstractCommand {
     @Override
     public boolean execute(String argument) {
         try {
-            if (argument.isEmpty()) throw new WrongAmountOfElementsException();
-            if (collectionManager.collectionSize() == 0) throw new CollectionIsEmptyException();
+            if (argument.isEmpty()) {Console.println("использование: '" + getName() + "'"); return false;}
+            if (collectionManager.collectionSize() == 0) {Console.printerror("Коллекция пуста!"); return false;}
             int id = Integer.parseInt(argument);
-            Vehicle marineToRemove = collectionManager.getById(id);
-            if (marineToRemove == null) throw new VehicleNotFoundException();
-            collectionManager.removeFromCollection(marineToRemove);
+            Vehicle vehicleToRemove = collectionManager.getById(id);
+            if (vehicleToRemove == null) {Console.printerror("Vehicle с таким ID в коллекции нет!");return false;}
+            else{
+            collectionManager.removeFromCollection(vehicleToRemove);
             Console.println("Vehicle успешно удален!");
             return true;
-        } catch (WrongAmountOfElementsException exception) {
-            Console.println("использование: '" + getName() + "'");
-        } catch (CollectionIsEmptyException exception) {
-            Console.printerror("коллекция пуста!");
-        } catch (NumberFormatException exception) {
+            }
+        }
+          catch (NumberFormatException exception) {
             Console.printerror("ID должен быть представлен числом!");
-        } catch (VehicleNotFoundException exception) {
-            Console.printerror("Vehicle с таким ID в коллекции нет!");
         }
         return false;
     }

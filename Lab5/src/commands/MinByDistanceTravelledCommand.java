@@ -24,11 +24,9 @@ import utility.Console;
         @Override
         public boolean execute(String argument) {
             try {
-                if (!argument.isEmpty()) throw new WrongAmountOfElementsException();
+                if (!argument.isEmpty()) {Console.println("использование: '" + getName() + "'");return false;}
                 Console.println(collectionManager.minByDistanceTravelled());
                 return true;
-            } catch (WrongAmountOfElementsException exception) {
-                Console.println("использование: '" + getName() + "'");
             } catch (CollectionIsEmptyException exception) {
                 Console.printerror("Коллекция пуста!");
             }

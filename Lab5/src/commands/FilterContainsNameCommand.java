@@ -22,19 +22,13 @@ public class FilterContainsNameCommand extends AbstractCommand {
      */
     @Override
     public boolean execute(String argument) {
-        try {
-            if (argument.isEmpty()) throw new WrongAmountOfElementsException();
-            if (collectionManager.collectionSize() == 0) throw new CollectionIsEmptyException();
+            if (argument.isEmpty()) {Console.println("использование: '" + getName() + "'");return false;}
+            if (collectionManager.collectionSize() == 0) {Console.printerror("Коллекция пуста!");return false;}
+            else{
             String filteredInfo = collectionManager.vehicleFilteredInfo(argument);
             if (!filteredInfo.isEmpty()) {
                 Console.println(filteredInfo);
-                return true;
-            } else Console.println("В коллекции нет vehicle с заданным именем!");
-        } catch (WrongAmountOfElementsException exception) {
-            Console.println("использование: '" + getName() + "'");
-        } catch (CollectionIsEmptyException exception) {
-            Console.printerror("Коллекция пуста!");
-        }
-        return false;
+                return true;}
+            else {Console.println("В коллекции нет vehicle с заданным именем!");return false;}}
     }
 }

@@ -21,13 +21,10 @@ public class ShowCommand extends AbstractCommand {
      */
     @Override
     public boolean execute(String argument) {
-        try {
-            if (!argument.isEmpty()) throw new WrongAmountOfElementsException();
-            Console.println(collectionManager);
-            return true;
-        } catch (WrongAmountOfElementsException exception) {
-            Console.println("использование: '" + getName() + "'");
-        }
-        return false;
+            if (!argument.isEmpty()) {Console.println("использование: '" + getName() + "'");return false;}
+            else {
+                Console.println(collectionManager);
+                return true;
+            }
     }
 }

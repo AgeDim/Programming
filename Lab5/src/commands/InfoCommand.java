@@ -23,8 +23,7 @@ public class InfoCommand extends AbstractCommand {
      */
     @Override
     public boolean execute(String argument) {
-        try {
-            if (!argument.isEmpty()) throw new WrongAmountOfElementsException();
+            if (!argument.isEmpty()) {Console.println("использование: '" + getName() + "'");return false;}
             LocalDateTime lastInitTime = collectionManager.getLastInitTime();
             String lastInitTimeString = (lastInitTime == null) ? "в данной сессии инициализации еще не происходило" :
                                         lastInitTime.toLocalDate().toString() + " " + lastInitTime.toLocalTime().toString();
@@ -39,9 +38,5 @@ public class InfoCommand extends AbstractCommand {
             Console.println(" дата последнего сохранения: " + lastSaveTimeString);
             Console.println(" дата последней инициализации: " + lastInitTimeString);
             return true;
-        } catch (WrongAmountOfElementsException exception) {
-            Console.println("использование: '" + getName() + "'");
-        }
-        return false;
     }
 }

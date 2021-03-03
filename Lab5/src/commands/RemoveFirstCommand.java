@@ -22,15 +22,12 @@ public class RemoveFirstCommand extends AbstractCommand {
      */
     @Override
     public boolean execute(String argument) {
-        try {
-            if (collectionManager.collectionSize() == 0) throw new CollectionIsEmptyException();
+            if (!argument.isEmpty()) {Console.println("использование: '" + getName() + "'");return false;}
+            if (collectionManager.collectionSize() == 0) {Console.printerror("Коллекция пуста!");return false;}
             Vehicle vehicleToRemove = collectionManager.getFirst();
             collectionManager.removeFromCollection(vehicleToRemove);
             Console.println("Vehicle успешно удален!");
             return true;
-        } catch (CollectionIsEmptyException exception) {
-            Console.printerror("коллекция пуста!");
-        }
-        return false;
+
     }
 }

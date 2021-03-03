@@ -28,7 +28,7 @@ public class AddIfMaxCommand extends AbstractCommand {
     @Override
     public boolean execute(String argument) {
         try {
-            if (!argument.isEmpty()) throw new WrongAmountOfElementsException();
+            if (!argument.isEmpty()) {Console.println("использование: '" + getName() + "'");return false;}
             Vehicle vehicleToAdd = new Vehicle(
                     collectionManager.generateNextId(),
                     vehicleAsker.askName(),
@@ -44,8 +44,6 @@ public class AddIfMaxCommand extends AbstractCommand {
                 Console.println("Vehicle успешно добавлен!");
                 return true;
             } else Console.printerror("значение Vehicle меньше, чем значение наибольшего из Vehicle!");
-        } catch (WrongAmountOfElementsException exception) {
-            Console.println("использование: '" + getName() + "'");
         } catch (IncorrectInputInScriptException exception) {}
         return false;
     }

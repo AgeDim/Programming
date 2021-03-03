@@ -21,13 +21,10 @@ public class SaveCommand extends AbstractCommand {
      */
     @Override
     public boolean execute(String argument) {
-        try {
-            if (!argument.isEmpty()) throw new WrongAmountOfElementsException();
+            if (!argument.isEmpty()) {Console.println("использование: '" + getName() + "'");return false;}
+            else{
             collectionManager.saveCollection();
             return true;
-        } catch (WrongAmountOfElementsException exception) {
-            Console.println("использование: '" + getName() + "'");
-        }
-        return false;
+            }
     }
 }

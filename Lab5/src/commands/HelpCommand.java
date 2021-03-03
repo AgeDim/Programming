@@ -18,12 +18,7 @@ public class HelpCommand extends AbstractCommand {
      */
     @Override
     public boolean execute(String argument) {
-        try {
-            if (!argument.isEmpty()) throw new WrongAmountOfElementsException();
-            return true;
-        } catch (WrongAmountOfElementsException exception) {
-            Console.println("использование: '" + getName() + "'");
-        }
-        return false;
+            if (!argument.isEmpty()) {Console.println("использование: '" + getName() + "'");return false;}
+            else{return true;}
     }
 }
