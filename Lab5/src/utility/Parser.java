@@ -13,25 +13,40 @@ public class Parser {
      * Parsing csv file
      * @return fileLines
      */
+    StringBuilder stringBuilder = new StringBuilder("");
     public ArrayList<String> parseFromFile(File filePath) throws IOException {
         //Загружаем строки из файла
 
         ArrayList<String> fileLines = new ArrayList<String>();
         InputStreamReader isr = new InputStreamReader(new FileInputStream(filePath));
+
         int c;
-        String text = "";
         do {
             c = isr.read();
             if ((char) c == '\n') {
-                fileLines.add(text);
-                text = "";
-                continue;
+                fileLines.add(stringBuilder.toString());
+                stringBuilder = new StringBuilder();
+            continue;
             }
-            text += (char) c;
+            stringBuilder.append((char) c);
         } while (c != -1);
 
         return fileLines;
     }
+    String text = stringBuilder.toString();
+//        String text = "";
+//        do {
+//            c = isr.read();
+//            if ((char) c == '\n') {
+//                fileLines.add(text);
+//                text = "";
+//                continue;
+//            }
+//            text += (char) c;
+//        } while (c != -1);
+//
+//        return fileLines;
+//    }
     /**
      * Parsing csv file
      * @return columnList
@@ -48,9 +63,7 @@ public class Parser {
                 columnList.add(s);
             }
         }
-
         return columnList;
-
     }
     /**
      * verification of parsing.

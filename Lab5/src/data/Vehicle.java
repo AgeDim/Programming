@@ -14,7 +14,7 @@ public class Vehicle implements Comparable<Vehicle> {
         private FuelType fuelType; //Поле может быть null
 
     public Vehicle(int id, String name, Coordinates coordinates, LocalDateTime creationDate,
-    int enginePower, int distanceTravelled, VehicleType type, FuelType fuelType){
+                   int enginePower, int distanceTravelled, VehicleType type, FuelType fuelType){
     this.id = id;
     this.name = name;
     this.coordinates = coordinates;
@@ -107,11 +107,10 @@ public class Vehicle implements Comparable<Vehicle> {
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
-        if (obj instanceof Vehicle) {
+        if (obj == null || getClass() != obj.getClass()) return false;
             Vehicle vehicleObj = (Vehicle) obj;
-            return name.equals(vehicleObj.getName()) && (coordinates == vehicleObj.getCoordinates()) &&
-                   (enginePower == vehicleObj.getEnginePower()) && (distanceTravelled == vehicleObj.getDistanceTravelled()) && type.equals(vehicleObj.getType()) && fuelType.equals(vehicleObj.getFuelType());
-        }
-        return false;
+            return (coordinates == vehicleObj.getCoordinates()) && (enginePower == vehicleObj.getEnginePower())
+                    && (distanceTravelled == vehicleObj.getDistanceTravelled());
+
     }
 }

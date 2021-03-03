@@ -78,27 +78,12 @@ public class FileManager {
             int distanceTravelled = Integer.parseInt(columnList.get(6));
             VehicleType type = VehicleType.valueOf(columnList.get(7));
             FuelType fuelType = columnList.get(8).equals("") ? null : FuelType.valueOf(columnList.get(8).trim());
-            while (true) {
-                    if (cordX > MAX_X) {cordX = MAX_X;Console.printerror("координата X не может превышать " + MAX_X + "!");
-                        break;
-                    }
-                    break;
-                }
-            while (true) {
-                    if (cordY > MAX_Y){ cordY = MAX_Y;Console.printerror("координата Y не может превышать " + MAX_Y + "!");
-                        break;}
-                    break;
-                }
-            while (true) {
-                    if (distanceTravelled < MIN_distanceTravelled) {distanceTravelled = 0;Console.printerror("Расстояние поездки не может быть меньше нуля!");
-                        break;}
-                    break;
-                }
-            while (true) {
-                    if (enginePower < MIN_enginePower) {enginePower = MIN_enginePower;Console.printerror("Сила двигателя не может быть меньше нуля!");
-                        break; }
-                    break;
-            }
+                    if (cordX > MAX_X) {cordX = MAX_X;Console.printerror("координата X не может превышать " + MAX_X + "!");}
+
+                    if (cordY > MAX_Y){ cordY = MAX_Y;Console.printerror("координата Y не может превышать " + MAX_Y + "!");}
+                    if (distanceTravelled < MIN_distanceTravelled) {distanceTravelled = 0;Console.printerror("Расстояние поездки не может быть меньше нуля!");}
+                    if (enginePower < MIN_enginePower) {enginePower = MIN_enginePower;Console.printerror("Сила двигателя не может быть меньше нуля!");}
+
             vehicle1.add( new Vehicle(id, name, new Coordinates(cordX, cordY), LocalDateTime.parse(creationDate),
                     enginePower, distanceTravelled, type, fuelType));
 

@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.Stack;
 import data.Vehicle;
 import exceptions.CollectionIsEmptyException;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Operates the collection itself.
@@ -122,14 +124,9 @@ public class CollectionManager {
      */
     public Vehicle minByDistanceTravelled() throws CollectionIsEmptyException {
         if (vehicleCollection.isEmpty()) throw new CollectionIsEmptyException();
-
-        Vehicle maxVehicle = getFirst();
-        for (Vehicle vehicle : vehicleCollection) {
-            if (vehicle.getDistanceTravelled() < maxVehicle.getDistanceTravelled()) {
-                maxVehicle = vehicle;
-            }
-        }
-        return maxVehicle;
+        return Collections.min(vehicleCollection, new Comparator<Vehicle>() {
+            @Override
+            public int compare(Vehicle o1, Vehicle o2) { int c = o1.getDistanceTravelled()-o2.getDistanceTravelled();return c; }});
     }
 
     /**
