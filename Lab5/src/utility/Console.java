@@ -40,8 +40,6 @@ public class Console {
             } while (commandStatus != 2);
         } catch (NoSuchElementException exception) {
             Console.printerror("Пользовательский ввод не обнаружен!");
-        } catch (IllegalStateException exception) {
-            Console.printerror("Непредвиденная ошибка!");
         }
     }
 
@@ -86,9 +84,6 @@ public class Console {
             Console.printerror("Файл со скриптом пуст!");
         } catch (ScriptRecursionException exception) {
             Console.printerror("Скрипты не могут вызываться рекурсивно!");
-        } catch (IllegalStateException exception) {
-            Console.printerror("Непредвиденная ошибка!");
-            System.exit(0);
         } finally {
             scriptStack.remove(scriptStack.size() - 1);
         }

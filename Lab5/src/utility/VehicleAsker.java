@@ -121,9 +121,6 @@ public class VehicleAsker {
             } catch (NumberFormatException exception) {
                 Console.printerror("координата X должна быть представлена числом!");
                 if (fileMode) throw new IncorrectInputInScriptException();
-            } catch (NullPointerException | IllegalStateException exception) {
-                Console.printerror("непредвиденная ошибка!");
-                System.exit(0);
             }
         }
         return x;
@@ -156,9 +153,6 @@ public class VehicleAsker {
             } catch (NumberFormatException exception) {
                 Console.printerror("координата Y должна быть представлена числом!");
                 if (fileMode) throw new IncorrectInputInScriptException();
-            } catch (NullPointerException | IllegalStateException exception) {
-                Console.printerror("непредвиденная ошибка!");
-                System.exit(0);
             }
         }
         return y;
@@ -205,9 +199,6 @@ public class VehicleAsker {
             } catch (NumberFormatException exception) {
                 Console.printerror("сила двигателя должна быть числом!");
                 if (fileMode) throw new IncorrectInputInScriptException();
-            } catch (NullPointerException | IllegalStateException exception) {
-                Console.printerror("непредвиденная ошибка!");
-                System.exit(0);
             }
         }
         return enginePower;
@@ -304,9 +295,6 @@ public class VehicleAsker {
             } catch (NumberFormatException exception) {
                 Console.printerror("дистанция должна быть числом!");
                 if (fileMode) throw new IncorrectInputInScriptException();
-            } catch (NullPointerException | IllegalStateException exception) {
-                Console.printerror("непредвиденная ошибка!");
-                System.exit(0);
             }
         }
         return distanceTravelled;
@@ -336,9 +324,6 @@ public class VehicleAsker {
             } catch (NotInDeclaredLimitsException exception) {
                 Console.printerror("ответ должен быть представлен знаками '+' или '-'!");
                 if (fileMode) throw new IncorrectInputInScriptException();
-            } catch (IllegalStateException exception) {
-                Console.printerror("непредвиденная ошибка!");
-                System.exit(0);
             }
         }
         return (answer.equals("+")) ? true : false;
