@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+
 import exceptions.ScriptRecursionException;
 import run.App;
 
@@ -46,6 +47,7 @@ public class Console {
 
     /**
      * Mode for catching commands from a script.
+     *
      * @param argument Its argument.
      * @return Exit code.
      */
@@ -69,7 +71,7 @@ public class Console {
                 if (userCommand[0].equals("execute_script")) {
                     for (String script : scriptStack) {
                         if (userCommand[1].equals(script)) throw new ScriptRecursionException();
-                    }   
+                    }
                 }
                 commandStatus = launchCommand(userCommand);
             } while (commandStatus == 0 && scriptScanner.hasNextLine());
@@ -88,13 +90,14 @@ public class Console {
             Console.printerror("Непредвиденная ошибка!");
             System.exit(0);
         } finally {
-            scriptStack.remove(scriptStack.size()-1);
+            scriptStack.remove(scriptStack.size() - 1);
         }
         return 1;
     }
 
     /**
      * Launchs the command.
+     *
      * @param userCommand Command to launch.
      * @return Exit code.
      */
@@ -142,8 +145,8 @@ public class Console {
                 if (!commandManager.minByDistanceTravelled(userCommand[1])) return 1;
                 break;
             case "remove_by_EnPow":
-                 if (!commandManager.removeByEnPower(userCommand[1])) return 1;
-                 break;
+                if (!commandManager.removeByEnPower(userCommand[1])) return 1;
+                break;
             case "exit":
                 if (!commandManager.exit(userCommand[1])) return 1;
                 else return 2;
@@ -157,6 +160,7 @@ public class Console {
 
     /**
      * Prints toOut.toString() to Console
+     *
      * @param toOut Object to print
      */
     public static void print(Object toOut) {
@@ -165,6 +169,7 @@ public class Console {
 
     /**
      * Prints toOut.toString() + \n to Console
+     *
      * @param toOut Object to print
      */
     public static void println(Object toOut) {
@@ -173,6 +178,7 @@ public class Console {
 
     /**
      * Prints error: toOut.toString() to Console
+     *
      * @param toOut Error to print
      */
     public static void printerror(Object toOut) {
@@ -181,6 +187,7 @@ public class Console {
 
     /**
      * Prints formatted 2-element table to Console
+     *
      * @param element1 Left element of the row.
      * @param element2 Right element of the row.
      */

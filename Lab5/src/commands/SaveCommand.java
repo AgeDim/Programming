@@ -1,6 +1,5 @@
 package commands;
 
-import exceptions.WrongAmountOfElementsException;
 import utility.CollectionManager;
 import utility.Console;
 
@@ -17,14 +16,17 @@ public class SaveCommand extends AbstractCommand {
 
     /**
      * Executes the command.
+     *
      * @return Command exit status.
      */
     @Override
     public boolean execute(String argument) {
-            if (!argument.isEmpty()) {Console.println("использование: '" + getName() + "'");return false;}
-            else{
+        if (!argument.isEmpty()) {
+            Console.println("использование: '" + getName() + "'");
+            return false;
+        } else {
             collectionManager.saveCollection();
             return true;
-            }
+        }
     }
 }

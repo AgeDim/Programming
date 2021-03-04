@@ -1,6 +1,5 @@
 package commands;
 
-import exceptions.WrongAmountOfElementsException;
 import utility.Console;
 
 /**
@@ -14,11 +13,16 @@ public class HelpCommand extends AbstractCommand {
 
     /**
      * Executes the command.
+     *
      * @return Command exit status.
      */
     @Override
     public boolean execute(String argument) {
-            if (!argument.isEmpty()) {Console.println("использование: '" + getName() + "'");return false;}
-            else{return true;}
+        if (!argument.isEmpty()) {
+            Console.println("использование: '" + getName() + "'");
+            return false;
+        } else {
+            return true;
+        }
     }
 }

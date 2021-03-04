@@ -30,7 +30,7 @@ public class Coordinates {
     public String toString() {
         return "X:" + x + " Y:" + y;
     }
-    
+
     @Override
     public int hashCode() {
         return (int) y + (int) x;

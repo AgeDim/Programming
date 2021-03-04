@@ -5,50 +5,40 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+
 /**
  * Parser csv
  */
 public class Parser {
     /**
      * Parsing csv file
+     *
      * @return fileLines
      */
-    StringBuilder stringBuilder = new StringBuilder("");
+
     public ArrayList<String> parseFromFile(File filePath) throws IOException {
         //Загружаем строки из файла
 
         ArrayList<String> fileLines = new ArrayList<String>();
         InputStreamReader isr = new InputStreamReader(new FileInputStream(filePath));
-
+        StringBuilder stringBuilder = new StringBuilder("");
         int c;
         do {
             c = isr.read();
             if ((char) c == '\n') {
                 fileLines.add(stringBuilder.toString());
                 stringBuilder = new StringBuilder();
-            continue;
+                continue;
             }
             stringBuilder.append((char) c);
         } while (c != -1);
 
         return fileLines;
     }
-    String text = stringBuilder.toString();
-//        String text = "";
-//        do {
-//            c = isr.read();
-//            if ((char) c == '\n') {
-//                fileLines.add(text);
-//                text = "";
-//                continue;
-//            }
-//            text += (char) c;
-//        } while (c != -1);
-//
-//        return fileLines;
-//    }
+
     /**
      * Parsing csv file
+     *
      * @return columnList
      */
     public ArrayList<String> getItems(String fileLine) {
@@ -65,9 +55,11 @@ public class Parser {
         }
         return columnList;
     }
+
     /**
      * verification of parsing.
-     * @return trimText.indexOf("\"") == trimText.lastIndexOf("\"") && trimText.endsWith("\"");
+     *
+     * @return trimText.indexOf(" \ " ") == trimText.lastIndexOf("\"") && trimText.endsWith("\"");
      */
     //Проверка является ли колонка частью предыдущей колонки
     private static boolean IsColumnPart(String text) {

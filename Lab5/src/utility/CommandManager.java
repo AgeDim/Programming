@@ -81,7 +81,7 @@ public class CommandManager {
         Console.println("Команда '" + command + "' не найдена. Наберите 'help' для справки.");
         return false;
     }
-    
+
     /**
      * Prints info about the all commands.
      * @param argument Its argument.

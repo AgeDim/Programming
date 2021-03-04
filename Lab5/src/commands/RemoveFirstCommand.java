@@ -1,7 +1,6 @@
 package commands;
 
 import data.Vehicle;
-import exceptions.CollectionIsEmptyException;
 import utility.CollectionManager;
 import utility.Console;
 
@@ -18,16 +17,23 @@ public class RemoveFirstCommand extends AbstractCommand {
 
     /**
      * Executes the command.
+     *
      * @return Command exit status.
      */
     @Override
     public boolean execute(String argument) {
-            if (!argument.isEmpty()) {Console.println("использование: '" + getName() + "'");return false;}
-            if (collectionManager.collectionSize() == 0) {Console.printerror("Коллекция пуста!");return false;}
-            Vehicle vehicleToRemove = collectionManager.getFirst();
-            collectionManager.removeFromCollection(vehicleToRemove);
-            Console.println("Vehicle успешно удален!");
-            return true;
+        if (!argument.isEmpty()) {
+            Console.println("использование: '" + getName() + "'");
+            return false;
+        }
+        if (collectionManager.collectionSize() == 0) {
+            Console.printerror("Коллекция пуста!");
+            return false;
+        }
+        Vehicle vehicleToRemove = collectionManager.getFirst();
+        collectionManager.removeFromCollection(vehicleToRemove);
+        Console.println("Vehicle успешно удален!");
+        return true;
 
     }
 }

@@ -9,31 +9,27 @@ import java.util.ArrayList;
 import java.io.FileNotFoundException;
 import java.util.Collection;
 import java.util.Stack;
-import data.*;
-import exceptions.NotInDeclaredLimitsException;
-import exceptions.SameValuesExeption;
 
+import data.*;
 
 /**
  * Operates the file for saving/loading collection.
  */
 public class FileManager {
     private String envVariable;
-    private final float MAX_Y = 420;
-    private final int MIN_enginePower = 0;
-    private final int MIN_distanceTravelled = 0;
-    private final float MAX_X = 252;
+
     public FileManager(String envVariable) {
         this.envVariable = envVariable;
     }
 
     /**
      * Writes collection to a file.
+     *
      * @param collection Collection to write.
      */
     public void writeCollection(Collection<Vehicle> collection) {
-                String output;
-        try (PrintWriter pw = new PrintWriter(new FileOutputStream(new File("vehicleCollection.csv")))) {
+        String output;
+        try (PrintWriter pw = new PrintWriter(new FileOutputStream("vehicleCollection.csv"))) {
             for (Vehicle vehicle : collection) {
                 output = "" + vehicle.getId() + "," + vehicle.getName() + "," + vehicle.getCoordinates().getX() + "," +
                         vehicle.getCoordinates().getY() + "," + vehicle.getCreationDate() + "," +
@@ -47,8 +43,10 @@ public class FileManager {
             System.out.println("File not found!)");
         }
     }
+
     /**
      * Reads collection from a file.
+     *
      * @return vehicle1 readed collection.
      */
     public Stack<Vehicle> ReadFile() {
@@ -58,33 +56,48 @@ public class FileManager {
         File path = new File(System.getenv().get(envVariable));
         try {
             fileLines = pars.parseFromFile(path);
-        } catch(FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             System.out.println("File not found! Try again");
             return new Stack<Vehicle>();
-        } catch(IOException e) {
+        } catch (IOException e) {
             System.out.println("Reading error!");
             return new Stack<Vehicle>();
         }
 
-        ArrayList<String> columnList= new ArrayList<>();
+        ArrayList<String> columnList;
         for (String fileLine : fileLines) {
             columnList = pars.getItems(fileLine);
-            Integer id = Integer.parseInt(columnList.get(0));
+            int id = Integer.parseInt(columnList.get(0));
             String name = columnList.get(1);
             float cordX = Float.parseFloat(columnList.get(2));
             float cordY = Float.parseFloat(columnList.get(3));
             String creationDate = columnList.get(4);
-            Integer enginePower = Integer.parseInt(columnList.get(5));
+            int enginePower = Integer.parseInt(columnList.get(5));
             int distanceTravelled = Integer.parseInt(columnList.get(6));
             VehicleType type = VehicleType.valueOf(columnList.get(7));
             FuelType fuelType = columnList.get(8).equals("") ? null : FuelType.valueOf(columnList.get(8).trim());
-                    if (cordX > MAX_X) {cordX = MAX_X;Console.printerror("координата X не может превышать " + MAX_X + "!");}
+            float MAX_X = 252;
+            if (cordX > MAX_X) {
+                cordX = MAX_X;
+                Console.printerror("координата X не может превышать " + MAX_X + "!");
+            }
 
-                    if (cordY > MAX_Y){ cordY = MAX_Y;Console.printerror("координата Y не может превышать " + MAX_Y + "!");}
-                    if (distanceTravelled < MIN_distanceTravelled) {distanceTravelled = 0;Console.printerror("Расстояние поездки не может быть меньше нуля!");}
-                    if (enginePower < MIN_enginePower) {enginePower = MIN_enginePower;Console.printerror("Сила двигателя не может быть меньше нуля!");}
-
-            vehicle1.add( new Vehicle(id, name, new Coordinates(cordX, cordY), LocalDateTime.parse(creationDate),
+            float MAX_Y = 420;
+            if (cordY > MAX_Y) {
+                cordY = MAX_Y;
+                Console.printerror("координата Y не может превышать " + MAX_Y + "!");
+            }
+            int MIN_distanceTravelled = 0;
+            if (distanceTravelled < MIN_distanceTravelled) {
+                distanceTravelled = 0;
+                Console.printerror("Расстояние поездки не может быть меньше нуля!");
+            }
+            int MIN_enginePower = 0;
+            if (enginePower < MIN_enginePower) {
+                enginePower = MIN_enginePower;
+                Console.printerror("Сила двигателя не может быть меньше нуля!");
+            }
+            vehicle1.add(new Vehicle(id, name, new Coordinates(cordX, cordY), LocalDateTime.parse(creationDate),
                     enginePower, distanceTravelled, type, fuelType));
 
 
@@ -95,7 +108,6 @@ public class FileManager {
 
     @Override
     public String toString() {
-        String string = "FileManager (класс для работы с загрузочным файлом)";
-        return string;
+        return "FileManager (класс для работы с загрузочным файлом)";
     }
 }

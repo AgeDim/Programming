@@ -29,13 +29,15 @@ public abstract class AbstractCommand implements Command {
     @Override
     public String toString() {
         return name + " (" + description + ")";
-    };
+    }
+
+    ;
 
     @Override
     public int hashCode() {
         return name.hashCode() + description.hashCode();
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;

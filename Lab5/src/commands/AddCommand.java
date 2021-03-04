@@ -1,9 +1,9 @@
 package commands;
 
 import java.time.LocalDateTime;
+
 import data.Vehicle;
 import exceptions.IncorrectInputInScriptException;
-import exceptions.WrongAmountOfElementsException;
 import utility.CollectionManager;
 import utility.Console;
 import utility.VehicleAsker;
@@ -23,12 +23,16 @@ public class AddCommand extends AbstractCommand {
 
     /**
      * Executes the command.
+     *
      * @return Command exit status.
      */
     @Override
     public boolean execute(String argument) {
         try {
-            if (!argument.isEmpty()) {Console.println("использование: '" + getName() + "'");return false;}
+            if (!argument.isEmpty()) {
+                Console.println("использование: '" + getName() + "'");
+                return false;
+            }
             collectionManager.addToCollection(new Vehicle(
                     collectionManager.generateNextId(),
                     vehicleAsker.askName(),
@@ -41,8 +45,9 @@ public class AddCommand extends AbstractCommand {
             ));
             Console.println("Vehicle успешно добавлен!");
             return true;
+        } catch (IncorrectInputInScriptException exception) {
+            Console.printerror("Ошибка исполнения скрипта!");
         }
-        catch (IncorrectInputInScriptException exception) {}
         return false;
     }
 }

@@ -1,7 +1,5 @@
 package commands;
 
-import exceptions.CollectionIsEmptyException;
-import exceptions.WrongAmountOfElementsException;
 import utility.CollectionManager;
 import utility.Console;
 
@@ -18,17 +16,27 @@ public class FilterContainsNameCommand extends AbstractCommand {
 
     /**
      * Executes the command.
+     *
      * @return Command exit status.
      */
     @Override
     public boolean execute(String argument) {
-            if (argument.isEmpty()) {Console.println("использование: '" + getName() + "'");return false;}
-            if (collectionManager.collectionSize() == 0) {Console.printerror("Коллекция пуста!");return false;}
-            else{
+        if (argument.isEmpty()) {
+            Console.println("использование: '" + getName() + "'");
+            return false;
+        }
+        if (collectionManager.collectionSize() == 0) {
+            Console.printerror("Коллекция пуста!");
+            return false;
+        } else {
             String filteredInfo = collectionManager.vehicleFilteredInfo(argument);
             if (!filteredInfo.isEmpty()) {
                 Console.println(filteredInfo);
-                return true;}
-            else {Console.println("В коллекции нет vehicle с заданным именем!");return false;}}
+                return true;
+            } else {
+                Console.println("В коллекции нет vehicle с заданным именем!");
+                return false;
+            }
+        }
     }
 }

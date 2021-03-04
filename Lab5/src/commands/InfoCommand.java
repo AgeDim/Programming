@@ -2,7 +2,6 @@ package commands;
 
 import java.time.LocalDateTime;
 
-import exceptions.WrongAmountOfElementsException;
 import utility.CollectionManager;
 import utility.Console;
 
@@ -19,24 +18,28 @@ public class InfoCommand extends AbstractCommand {
 
     /**
      * Executes the command.
+     *
      * @return Command exit status.
      */
     @Override
     public boolean execute(String argument) {
-            if (!argument.isEmpty()) {Console.println("использование: '" + getName() + "'");return false;}
-            LocalDateTime lastInitTime = collectionManager.getLastInitTime();
-            String lastInitTimeString = (lastInitTime == null) ? "в данной сессии инициализации еще не происходило" :
-                                        lastInitTime.toLocalDate().toString() + " " + lastInitTime.toLocalTime().toString();
-            
-            LocalDateTime lastSaveTime = collectionManager.getLastSaveTime();
-            String lastSaveTimeString = (lastSaveTime == null) ? "в данной сессии сохранения еще не происходило" :
-                                        lastSaveTime.toLocalDate().toString() + " " + lastSaveTime.toLocalTime().toString();
+        if (!argument.isEmpty()) {
+            Console.println("использование: '" + getName() + "'");
+            return false;
+        }
+        LocalDateTime lastInitTime = collectionManager.getLastInitTime();
+        String lastInitTimeString = (lastInitTime == null) ? "в данной сессии инициализации еще не происходило" :
+                lastInitTime.toLocalDate().toString() + " " + lastInitTime.toLocalTime().toString();
 
-            Console.println("сведения о коллекции:");
-            Console.println("тип: " + collectionManager.collectionType());
-            Console.println(" количество элементов: " + collectionManager.collectionSize());
-            Console.println(" дата последнего сохранения: " + lastSaveTimeString);
-            Console.println(" дата последней инициализации: " + lastInitTimeString);
-            return true;
+        LocalDateTime lastSaveTime = collectionManager.getLastSaveTime();
+        String lastSaveTimeString = (lastSaveTime == null) ? "в данной сессии сохранения еще не происходило" :
+                lastSaveTime.toLocalDate().toString() + " " + lastSaveTime.toLocalTime().toString();
+
+        Console.println("сведения о коллекции:");
+        Console.println("тип: " + collectionManager.collectionType());
+        Console.println(" количество элементов: " + collectionManager.collectionSize());
+        Console.println(" дата последнего сохранения: " + lastSaveTimeString);
+        Console.println(" дата последней инициализации: " + lastInitTimeString);
+        return true;
     }
 }

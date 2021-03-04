@@ -1,11 +1,9 @@
 package commands;
 
 import java.time.LocalDateTime;
+
 import data.Vehicle;
-import exceptions.CollectionIsEmptyException;
 import exceptions.IncorrectInputInScriptException;
-import exceptions.VehicleNotFoundException;
-import exceptions.WrongAmountOfElementsException;
 import utility.CollectionManager;
 import utility.Console;
 import utility.VehicleAsker;
@@ -25,13 +23,20 @@ public class RemoveGreaterCommand extends AbstractCommand {
 
     /**
      * Executes the command.
+     *
      * @return Command exit status.
      */
     @Override
     public boolean execute(String argument) {
         try {
-            if (!argument.isEmpty()) {Console.println("использование: '" + getName() + "'");return false;}
-            if (collectionManager.collectionSize() == 0) {Console.printerror("Коллекция пуста!");return false;}
+            if (!argument.isEmpty()) {
+                Console.println("использование: '" + getName() + "'");
+                return false;
+            }
+            if (collectionManager.collectionSize() == 0) {
+                Console.printerror("Коллекция пуста!");
+                return false;
+            }
             Vehicle vehicleToFind = new Vehicle(
                     collectionManager.generateNextId(),
                     vehicleAsker.askName(),
@@ -43,12 +48,16 @@ public class RemoveGreaterCommand extends AbstractCommand {
                     vehicleAsker.askFuelType()
             );
             Vehicle vehicleFromCollection = collectionManager.getByValue(vehicleToFind);
-            if (vehicleFromCollection == null){Console.printerror("vehicle с такими характеристиками в коллекции нет!");return false;}
+            if (vehicleFromCollection == null) {
+                Console.printerror("vehicle с такими характеристиками в коллекции нет!");
+                return false;
+            }
             collectionManager.removeGreater(vehicleFromCollection);
             Console.println("vehicles успешно удалены!");
             return true;
+        } catch (IncorrectInputInScriptException exception) {
+            Console.printerror("Ошибка исполнения скрипта!");
         }
-        catch (IncorrectInputInScriptException exception) {}
         return false;
     }
 }

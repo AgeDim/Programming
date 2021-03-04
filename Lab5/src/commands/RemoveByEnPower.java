@@ -21,21 +21,30 @@ public class RemoveByEnPower extends AbstractCommand {
 
     /**
      * Executes the command.
+     *
      * @return Command exit status.
      */
     @Override
     public boolean execute(String argument) {
         try {
-            if (argument.isEmpty()) {Console.println("использование: '" + getName() + "'");return false;}
-            if (collectionManager.collectionSize() == 0) {Console.printerror("Коллекция пуста!");return false;}
+            if (argument.isEmpty()) {
+                Console.println("использование: '" + getName() + "'");
+                return false;
+            }
+            if (collectionManager.collectionSize() == 0) {
+                Console.printerror("Коллекция пуста!");
+                return false;
+            }
             int enginePower = Integer.parseInt(argument);
             Vehicle vehicleToRemove = collectionManager.getByEnginePower(enginePower);
-            if (vehicleToRemove == null){Console.printerror("Vehicle с таким engine power в коллекции нет!");return false;}
+            if (vehicleToRemove == null) {
+                Console.printerror("Vehicle с таким engine power в коллекции нет!");
+                return false;
+            }
             collectionManager.removeFromCollection(vehicleToRemove);
             Console.println("Vehicle успешно удален!");
             return true;
-        }
-        catch (NumberFormatException exception) {
+        } catch (NumberFormatException exception) {
             Console.printerror("Engine power должен быть представлен числом!");
         }
         return false;

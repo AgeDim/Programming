@@ -1,15 +1,18 @@
 package utility;
 
 import run.App;
+
 import java.time.LocalDateTime;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+
 import data.Coordinates;
 import data.FuelType;
 import data.VehicleType;
 import exceptions.IncorrectInputInScriptException;
 import exceptions.MustBeNotEmptyException;
 import exceptions.NotInDeclaredLimitsException;
+
 /**
  * Asks a user a vehicle's value.
  */
@@ -20,19 +23,21 @@ public class VehicleAsker {
     private final int MIN_distanceTravelled = 0;
     private Scanner userScanner;
     private boolean fileMode;
-    
+
     public VehicleAsker(Scanner userScanner) {
         this.userScanner = userScanner;
         fileMode = false;
     }
 
-    public VehicleAsker(int generateNextId, String askName, Coordinates askCoordinates, LocalDateTime now, VehicleType askVehicleType, long askDistanceTravelled, double askEnginePower, FuelType askFuelType) {
+    public VehicleAsker(int generateNextId, String askName, Coordinates askCoordinates,
+                        LocalDateTime now, VehicleType askVehicleType, long askDistanceTravelled, double askEnginePower, FuelType askFuelType) {
 
     }
 
 
     /**
      * Sets a scanner to scan user input.
+     *
      * @param userScanner Scanner to set.
      */
     public void setUserScanner(Scanner userScanner) {
@@ -62,6 +67,7 @@ public class VehicleAsker {
 
     /**
      * Asks a user the vehicle's name.
+     *
      * @return Marine's name.
      * @throws IncorrectInputInScriptException If script is running and something goes wrong.
      */
@@ -91,6 +97,7 @@ public class VehicleAsker {
 
     /**
      * Asks a user the vehicle's X coordinate.
+     *
      * @return Vehicle's X coordinate.
      * @throws IncorrectInputInScriptException If script is running and something goes wrong.
      */
@@ -99,7 +106,7 @@ public class VehicleAsker {
         float x;
         while (true) {
             try {
-                Console.println("введите координату X < " + (MAX_X+1) + ":");
+                Console.println("введите координату X < " + (MAX_X + 1) + ":");
                 Console.print(App.PS2);
                 strX = userScanner.nextLine().trim();
                 if (fileMode) Console.println(strX);
@@ -109,11 +116,9 @@ public class VehicleAsker {
             } catch (NoSuchElementException exception) {
                 Console.printerror("координата X не распознана!");
                 if (fileMode) throw new IncorrectInputInScriptException();
-            }
-            catch (NotInDeclaredLimitsException exception) {
+            } catch (NotInDeclaredLimitsException exception) {
                 Console.printerror("координата X не может превышать " + MAX_X + "!");
-            }
-            catch (NumberFormatException exception) {
+            } catch (NumberFormatException exception) {
                 Console.printerror("координата X должна быть представлена числом!");
                 if (fileMode) throw new IncorrectInputInScriptException();
             } catch (NullPointerException | IllegalStateException exception) {
@@ -126,6 +131,7 @@ public class VehicleAsker {
 
     /**
      * Asks a user the vehicle's Y coordinate.
+     *
      * @return Vehicle's Y coordinate.
      * @throws IncorrectInputInScriptException If script is running and something goes wrong.
      */
@@ -134,7 +140,7 @@ public class VehicleAsker {
         float y;
         while (true) {
             try {
-                Console.println("введите координату Y < " + (MAX_Y+1) + ":");
+                Console.println("введите координату Y < " + (MAX_Y + 1) + ":");
                 Console.print(App.PS2);
                 strY = userScanner.nextLine().trim();
                 if (fileMode) Console.println(strY);
@@ -160,6 +166,7 @@ public class VehicleAsker {
 
     /**
      * Asks a user the vehicle's coordinates.
+     *
      * @return Vehicle's coordinates.
      * @throws IncorrectInputInScriptException If script is running and something goes wrong.
      */
@@ -173,6 +180,7 @@ public class VehicleAsker {
 
     /**
      * Asks a user the vehicle's health.
+     *
      * @return Vehicle's engine power.
      * @throws IncorrectInputInScriptException If script is running and something goes wrong.
      */
@@ -207,6 +215,7 @@ public class VehicleAsker {
 
     /**
      * Asks a user the vehicle's category.
+     *
      * @return Vehicle's fuel type.
      * @throws IncorrectInputInScriptException If script is running and something goes wrong.
      */
@@ -235,8 +244,10 @@ public class VehicleAsker {
         }
         return fuelType;
     }
+
     /**
      * Asks a user the vehicle's type.
+     *
      * @return Vehicle's type.
      * @throws IncorrectInputInScriptException If script is running and something goes wrong.
      */
@@ -265,8 +276,10 @@ public class VehicleAsker {
         }
         return type;
     }
+
     /**
      * Asks a user the vehicle's distance of travelled.
+     *
      * @return Distance travelled.
      * @throws IncorrectInputInScriptException If script is running and something goes wrong.
      */
@@ -301,8 +314,9 @@ public class VehicleAsker {
 
     /**
      * Asks a user a question.
-     * @return Answer (true/false).
+     *
      * @param question A question.
+     * @return Answer (true/false).
      * @throws IncorrectInputInScriptException If script is running and something goes wrong.
      */
     public boolean askQuestion(String question) throws IncorrectInputInScriptException {

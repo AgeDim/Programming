@@ -11,13 +11,14 @@ public enum VehicleType {
 
     /**
      * Generates a beautiful list of enum string values.
+     *
      * @return String with all enum values splitted by comma.
      */
     public static String nameList() {
-        String nameList = "";
+        StringBuilder nameList = new StringBuilder();
         for (VehicleType type : values()) {
-            nameList += type.name() + ", ";
+            nameList.append(type.name()).append(", ");
         }
-        return nameList.substring(0, nameList.length()-2);
+        return nameList.substring(0, nameList.length() - 2);
     }
 }

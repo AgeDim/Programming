@@ -2,16 +2,18 @@ package utility;
 
 import java.time.LocalDateTime;
 import java.util.Stack;
+
 import data.Vehicle;
 import exceptions.CollectionIsEmptyException;
+
 import java.util.Collections;
-import java.util.Comparator;
+
 
 /**
  * Operates the collection itself.
  */
 public class CollectionManager {
-    private Stack<Vehicle> vehicleCollection =  new Stack<>();
+    private Stack<Vehicle> vehicleCollection = new Stack<>();
     private LocalDateTime lastInitTime;
     private LocalDateTime lastSaveTime;
     private FileManager fileManager;
@@ -22,7 +24,7 @@ public class CollectionManager {
         this.fileManager = fileManager;
         loadCollection();
     }
-    
+
     /**
      * @return The collecton itself.
      */
@@ -67,14 +69,6 @@ public class CollectionManager {
     }
 
     /**
-     * @return The last element of the collection or null if collection is empty.
-     */
-    public Vehicle getLast() {
-        if (vehicleCollection.isEmpty()) return null;
-        return vehicleCollection.lastElement();
-    }
-
-    /**
      * @param id ID of the vehicle.
      * @return A vehicle by his ID or null if vehicle isn't found.
      */
@@ -84,6 +78,7 @@ public class CollectionManager {
         }
         return null;
     }
+
     /**
      * @param enginePower EnginePower of the vehicle.
      * @return A vehicle by his enginePower or null if marine isn't found.
@@ -94,6 +89,7 @@ public class CollectionManager {
         }
         return null;
     }
+
     /**
      * @param vehicleToFind A Vehicle who's value will be found.
      * @return A vehicle by his value or null if vehicle isn't found.
@@ -109,7 +105,7 @@ public class CollectionManager {
     /**
      * @return Vehicle, who has max EnginePower.
      */
-    public Vehicle GetMax(){
+    public Vehicle GetMax() {
         Vehicle maxVehicle = getFirst();
         for (Vehicle vehicle : vehicleCollection) {
             if (vehicle.compareTo(maxVehicle) > 0) {
@@ -118,15 +114,15 @@ public class CollectionManager {
         }
         return maxVehicle;
     }
+
     /**
      * @return Vehicle, who has min distance travelled.
      * @throws CollectionIsEmptyException If collection is empty.
      */
-    public Vehicle minByDistanceTravelled() throws CollectionIsEmptyException {
-        if (vehicleCollection.isEmpty()) throw new CollectionIsEmptyException();
-        return Collections.min(vehicleCollection, new Comparator<Vehicle>() {
-            @Override
-            public int compare(Vehicle o1, Vehicle o2) { int c = o1.getDistanceTravelled()-o2.getDistanceTravelled();return c; }});
+    public Vehicle minByDistanceTravelled(){
+        return Collections.min(vehicleCollection, (o1, o2) -> {
+            return o1.getDistanceTravelled() - o2.getDistanceTravelled();
+        });
     }
 
     /**
@@ -135,17 +131,18 @@ public class CollectionManager {
      */
 
     public String vehicleFilteredInfo(String name) {
-        String info = "";
+        StringBuilder info = new StringBuilder();
         for (Vehicle vehicle : vehicleCollection) {
             if (vehicle.getName().contains(name)) {
-                info += vehicle + "\n\n";
+                info.append(vehicle).append("\n\n");
             }
         }
-        return info.trim();
+        return info.toString().trim();
     }
 
     /**
      * Adds a new vehicle to collection.
+     *
      * @param vehicle to add.
      */
     public void addToCollection(Vehicle vehicle) {
@@ -154,6 +151,7 @@ public class CollectionManager {
 
     /**
      * Removes a new vehicle to collection.
+     *
      * @param vehicle A vehicle to remove.
      */
     public void removeFromCollection(Vehicle vehicle) {
@@ -162,6 +160,7 @@ public class CollectionManager {
 
     /**
      * Remove vehicles greater than the selected one.
+     *
      * @param vehicleToCompare A vehicle to compare with.
      */
     public void removeGreater(Vehicle vehicleToCompare) {
@@ -177,6 +176,7 @@ public class CollectionManager {
 
     /**
      * Generates next ID. It will be (the bigger one + 1).
+     *
      * @return Next ID.
      */
     public int generateNextId() {
@@ -188,8 +188,8 @@ public class CollectionManager {
      * Saves the collection to file.
      */
     public void saveCollection() {
-            fileManager.writeCollection(vehicleCollection);
-            lastSaveTime = LocalDateTime.now();
+        fileManager.writeCollection(vehicleCollection);
+        lastSaveTime = LocalDateTime.now();
     }
 
     /**
@@ -204,11 +204,11 @@ public class CollectionManager {
     public String toString() {
         if (vehicleCollection.isEmpty()) return "Коллекция пуста!";
 
-        String info = "";
+        StringBuilder info = new StringBuilder();
         for (Vehicle vehicle : vehicleCollection) {
-            info += vehicle;
-            if (vehicle != vehicleCollection.lastElement()) info += "\n\n";
+            info.append(vehicle);
+            if (vehicle != vehicleCollection.lastElement()) info.append("\n\n");
         }
-        return info;
+        return info.toString();
     }
 }

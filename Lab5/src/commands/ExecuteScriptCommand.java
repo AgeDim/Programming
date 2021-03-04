@@ -13,13 +13,17 @@ public class ExecuteScriptCommand extends AbstractCommand {
 
     /**
      * Executes the command, but partially.
+     *
      * @return Command exit status.
      */
     @Override
     public boolean execute(String argument) {
-            if (argument.isEmpty()) {Console.println("использование: '" + getName() + "'");return false;}
-            else {
+        if (argument.isEmpty()) {
+            Console.println("использование: '" + getName() + "'");
+            return false;
+        } else {
             Console.println("выполняю скрипт '" + argument + "'...");
-            return true;}
+            return true;
+        }
     }
 }
