@@ -12,8 +12,8 @@ import utility.VehicleAsker;
  * Command 'update'. Updates the information about selected marine.
  */
 public class UpdateCommand extends AbstractCommand {
-    private CollectionManager collectionManager;
-    private VehicleAsker vehicleAsker;
+    private final CollectionManager collectionManager;
+    private final VehicleAsker vehicleAsker;
 
     public UpdateCommand(CollectionManager collectionManager, VehicleAsker vehicleAsker) {
         super("update <ID> {element}", "обновить значение элемента коллекции по ID");

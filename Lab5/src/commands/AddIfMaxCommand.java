@@ -13,8 +13,8 @@ import utility.VehicleAsker;
  * Command 'add_if_max'. Adds a new element to collection if it's more than the maximal one.
  */
 public class AddIfMaxCommand extends AbstractCommand {
-    private CollectionManager collectionManager;
-    private VehicleAsker vehicleAsker;
+    private final CollectionManager collectionManager;
+    private final VehicleAsker vehicleAsker;
 
     public AddIfMaxCommand(CollectionManager collectionManager, VehicleAsker vehicleAsker) {
         super("add_if_max {element}", "добавить новый элемент, если его значение больше, чем у наибольшего");

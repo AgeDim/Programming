@@ -4,8 +4,8 @@ package data;
  * X-Y coordinates.
  */
 public class Coordinates {
-    private float x;
-    private float y;
+    private final float x;
+    private final float y;
 
     public Coordinates(float x, float y) {
         this.x = x;

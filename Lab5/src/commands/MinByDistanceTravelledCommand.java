@@ -1,4 +1,3 @@
-
 package commands;
 
 import exceptions.CollectionIsEmptyException;
@@ -10,7 +9,7 @@ import utility.Console;
  * Command 'min_by_DistanceTravelled'. Prints element with low argument of distance travelled.
  */
 public class MinByDistanceTravelledCommand extends AbstractCommand {
-    private CollectionManager collectionManager;
+    private final CollectionManager collectionManager;
 
     public MinByDistanceTravelledCommand(CollectionManager collectionManager) {
         super("minByDistanceTravelled", "вывести элемент, значение поля Distance Travelled которого минимально");

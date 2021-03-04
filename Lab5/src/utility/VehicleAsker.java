@@ -326,7 +326,7 @@ public class VehicleAsker {
                 if (fileMode) throw new IncorrectInputInScriptException();
             }
         }
-        return (answer.equals("+")) ? true : false;
+        return answer.equals("+");
     }
 
     @Override

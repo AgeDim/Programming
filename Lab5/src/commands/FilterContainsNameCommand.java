@@ -7,7 +7,7 @@ import utility.Console;
  * Command 'filter_by_name'. Filters the collection by name.
  */
 public class FilterContainsNameCommand extends AbstractCommand {
-    private CollectionManager collectionManager;
+    private final CollectionManager collectionManager;
 
     public FilterContainsNameCommand(CollectionManager collectionManager) {
         super("filter_by_name <name>", "вывести элементы, значение поля name которых содержит заданную подстроку");

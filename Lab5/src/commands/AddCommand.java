@@ -12,8 +12,8 @@ import utility.VehicleAsker;
  * Command 'add'. Adds a new element to collection.
  */
 public class AddCommand extends AbstractCommand {
-    private CollectionManager collectionManager;
-    private VehicleAsker vehicleAsker;
+    private final CollectionManager collectionManager;
+    private final VehicleAsker vehicleAsker;
 
     public AddCommand(CollectionManager collectionManager, VehicleAsker vehicleAsker) {
         super("add {element}", "добавить новый элемент в коллекцию");

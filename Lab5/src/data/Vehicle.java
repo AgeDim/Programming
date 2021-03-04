@@ -6,14 +6,14 @@ import java.time.LocalDateTime;
  * info about Vehicle.
  */
 public class Vehicle implements Comparable<Vehicle> {
-    private Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
-    private String name; //Поле не может быть null, Строка не может быть пустой
-    private Coordinates coordinates; //Поле не может быть null
-    private LocalDateTime creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
-    private Integer enginePower; //Поле не может быть null, Значение поля должно быть больше 0
-    private int distanceTravelled; //Значение поля должно быть больше 0
-    private VehicleType type; //Поле не может быть null
-    private FuelType fuelType; //Поле может быть null
+    private final Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
+    private final String name; //Поле не может быть null, Строка не может быть пустой
+    private final Coordinates coordinates; //Поле не может быть null
+    private final LocalDateTime creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
+    private final Integer enginePower; //Поле не может быть null, Значение поля должно быть больше 0
+    private final int distanceTravelled; //Значение поля должно быть больше 0
+    private final VehicleType type; //Поле не может быть null
+    private final FuelType fuelType; //Поле может быть null
 
     public Vehicle(int id, String name, Coordinates coordinates, LocalDateTime creationDate,
                    int enginePower, int distanceTravelled, VehicleType type, FuelType fuelType) {

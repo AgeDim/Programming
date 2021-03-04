@@ -14,10 +14,10 @@ import run.App;
  * Operates command input.
  */
 public class Console {
-    private CommandManager commandManager;
-    private Scanner userScanner;
-    private VehicleAsker vehicleAsker;
-    private List<String> scriptStack = new ArrayList<>();
+    private final CommandManager commandManager;
+    private final Scanner userScanner;
+    private final VehicleAsker vehicleAsker;
+    private final List<String> scriptStack = new ArrayList<>();
 
     public Console(CommandManager commandManager, Scanner userScanner, VehicleAsker vehicleAsker) {
         this.commandManager = commandManager;

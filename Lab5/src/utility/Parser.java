@@ -21,7 +21,7 @@ public class Parser {
 
         ArrayList<String> fileLines = new ArrayList<String>();
         InputStreamReader isr = new InputStreamReader(new FileInputStream(filePath));
-        StringBuilder stringBuilder = new StringBuilder("");
+        StringBuilder stringBuilder = new StringBuilder();
         int c;
         do {
             c = isr.read();

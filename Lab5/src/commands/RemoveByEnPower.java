@@ -12,7 +12,7 @@ import utility.Console;
  * Command 'remove_by_EnPow'. Removes the element by its Engine Power.
  */
 public class RemoveByEnPower extends AbstractCommand {
-    private CollectionManager collectionManager;
+    private final CollectionManager collectionManager;
 
     public RemoveByEnPower(CollectionManager collectionManager) {
         super("remove_by_EnPow <enginePower>", "удалить элемент из коллекции по engine power");

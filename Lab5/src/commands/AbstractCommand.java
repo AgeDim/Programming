@@ -4,8 +4,8 @@ package commands;
  * Abstract Command class contains Object methods, name and description.
  */
 public abstract class AbstractCommand implements Command {
-    private String name;
-    private String description;
+    private final String name;
+    private final String description;
 
     public AbstractCommand(String name, String description) {
         this.name = name;
@@ -30,8 +30,6 @@ public abstract class AbstractCommand implements Command {
     public String toString() {
         return name + " (" + description + ")";
     }
-
-    ;
 
     @Override
     public int hashCode() {

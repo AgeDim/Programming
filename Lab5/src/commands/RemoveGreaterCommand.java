@@ -12,8 +12,8 @@ import utility.VehicleAsker;
  * Command 'remove_greater'. Removes elements greater than user entered.
  */
 public class RemoveGreaterCommand extends AbstractCommand {
-    private CollectionManager collectionManager;
-    private VehicleAsker vehicleAsker;
+    private final CollectionManager collectionManager;
+    private final VehicleAsker vehicleAsker;
 
     public RemoveGreaterCommand(CollectionManager collectionManager, VehicleAsker vehicleAsker) {
         super("remove_greater {element}", "удалить из коллекции все элементы, превышающие заданный");

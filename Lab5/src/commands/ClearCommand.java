@@ -8,7 +8,7 @@ import utility.Console;
  * Command 'clear'. Clears the collection.
  */
 public class ClearCommand extends AbstractCommand {
-    private CollectionManager collectionManager;
+    private final CollectionManager collectionManager;
 
     public ClearCommand(CollectionManager collectionManager) {
         super("clear", "очистить коллекцию");

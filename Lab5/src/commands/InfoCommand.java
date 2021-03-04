@@ -9,7 +9,7 @@ import utility.Console;
  * Command 'info'. Prints information about the collection.
  */
 public class InfoCommand extends AbstractCommand {
-    private CollectionManager collectionManager;
+    private final CollectionManager collectionManager;
 
     public InfoCommand(CollectionManager collectionManager) {
         super("info", "вывести информацию о коллекции");

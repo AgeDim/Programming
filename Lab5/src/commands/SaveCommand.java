@@ -7,7 +7,7 @@ import utility.Console;
  * Command 'save'. Saves the collection to a file.
  */
 public class SaveCommand extends AbstractCommand {
-    private CollectionManager collectionManager;
+    private final CollectionManager collectionManager;
 
     public SaveCommand(CollectionManager collectionManager) {
         super("save", "сохранить коллекцию в файл");

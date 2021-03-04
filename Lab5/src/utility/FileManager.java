@@ -16,7 +16,7 @@ import data.*;
  * Operates the file for saving/loading collection.
  */
 public class FileManager {
-    private String envVariable;
+    private final String envVariable;
 
     public FileManager(String envVariable) {
         this.envVariable = envVariable;

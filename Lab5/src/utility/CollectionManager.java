@@ -16,7 +16,7 @@ public class CollectionManager {
     private Stack<Vehicle> vehicleCollection = new Stack<>();
     private LocalDateTime lastInitTime;
     private LocalDateTime lastSaveTime;
-    private FileManager fileManager;
+    private final FileManager fileManager;
 
     public CollectionManager(FileManager fileManager) {
         this.lastInitTime = null;
@@ -119,7 +119,7 @@ public class CollectionManager {
      * @return Vehicle, who has min distance travelled.
      * @throws CollectionIsEmptyException If collection is empty.
      */
-    public Vehicle minByDistanceTravelled(){
+    public Vehicle minByDistanceTravelled() {
         return Collections.min(vehicleCollection, (o1, o2) -> {
             return o1.getDistanceTravelled() - o2.getDistanceTravelled();
         });

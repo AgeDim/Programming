@@ -7,7 +7,7 @@ import utility.Console;
  * Command 'show'. Shows information about all elements of the collection.
  */
 public class ShowCommand extends AbstractCommand {
-    private CollectionManager collectionManager;
+    private final CollectionManager collectionManager;
 
     public ShowCommand(CollectionManager collectionManager) {
         super("show", "вывести все элементы коллекции");

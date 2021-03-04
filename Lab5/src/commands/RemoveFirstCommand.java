@@ -8,7 +8,7 @@ import utility.Console;
  * Command 'remove_First'. Remove first object in collection.
  */
 public class RemoveFirstCommand extends AbstractCommand {
-    private CollectionManager collectionManager;
+    private final CollectionManager collectionManager;
 
     public RemoveFirstCommand(CollectionManager collectionManager) {
         super("remove_First", "удалить первый элемент элемент из коллекции");

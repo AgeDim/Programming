@@ -2,33 +2,35 @@ package utility;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import commands.Command;
+
 /**
  * Operates the commands.
  */
 public class CommandManager {
-    private List<Command> commands = new ArrayList<>();
-    private Command helpCommand;
-    private Command infoCommand;
-    private Command showCommand;
-    private Command addCommand;
-    private Command updateCommand;
-    private Command removeByIdCommand;
-    private Command clearCommand;
-    private Command saveCommand;
-    private Command exitCommand;
-    private Command executeScriptCommand;
-    private Command addIfMaxCommand;
-    private Command removeGreaterCommand;
-    private Command remove_FirstCommand;
-    private Command remove_by_EnPowCommand;
-    private Command min_by_distance_travelledCommand;
-    private Command filterContainsNameCommand;
+    private final List<Command> commands = new ArrayList<>();
+    private final Command helpCommand;
+    private final Command infoCommand;
+    private final Command showCommand;
+    private final Command addCommand;
+    private final Command updateCommand;
+    private final Command removeByIdCommand;
+    private final Command clearCommand;
+    private final Command saveCommand;
+    private final Command exitCommand;
+    private final Command executeScriptCommand;
+    private final Command addIfMaxCommand;
+    private final Command removeGreaterCommand;
+    private final Command remove_FirstCommand;
+    private final Command remove_by_EnPowCommand;
+    private final Command min_by_distance_travelledCommand;
+    private final Command filterContainsNameCommand;
 
     public CommandManager(Command helpCommand, Command infoCommand, Command showCommand, Command addCommand, Command updateCommand,
                           Command removeByIdCommand, Command clearCommand, Command saveCommand, Command exitCommand, Command executeScriptCommand,
                           Command addIfMaxCommand, Command removeGreaterCommand, Command remove_FirstCommand, Command remove_by_EnPowCommand, Command min_by_distance_travelledCommand, Command filterContainsNameCommand
-                          ) {
+    ) {
         this.helpCommand = helpCommand;
         this.infoCommand = infoCommand;
         this.showCommand = showCommand;
@@ -72,8 +74,10 @@ public class CommandManager {
     public List<Command> getCommands() {
         return commands;
     }
+
     /**
      * Prints that command is not found.
+     *
      * @param command Comand, which is not found.
      * @return Command exit status.
      */
@@ -84,6 +88,7 @@ public class CommandManager {
 
     /**
      * Prints info about the all commands.
+     *
      * @param argument Its argument.
      * @return Command exit status.
      */
@@ -98,6 +103,7 @@ public class CommandManager {
 
     /**
      * Executes needed command.
+     *
      * @param argument Its argument.
      * @return Command exit status.
      */
@@ -107,6 +113,7 @@ public class CommandManager {
 
     /**
      * Executes needed command.
+     *
      * @param argument Its argument.
      * @return Command exit status.
      */
@@ -116,6 +123,7 @@ public class CommandManager {
 
     /**
      * Executes needed command.
+     *
      * @param argument Its argument.
      * @return Command exit status.
      */
@@ -125,6 +133,7 @@ public class CommandManager {
 
     /**
      * Executes needed command.
+     *
      * @param argument Its argument.
      * @return Command exit status.
      */
@@ -134,6 +143,7 @@ public class CommandManager {
 
     /**
      * Executes needed command.
+     *
      * @param argument Its argument.
      * @return Command exit status.
      */
@@ -143,6 +153,7 @@ public class CommandManager {
 
     /**
      * Executes needed command.
+     *
      * @param argument Its argument.
      * @return Command exit status.
      */
@@ -152,6 +163,7 @@ public class CommandManager {
 
     /**
      * Executes needed command.
+     *
      * @param argument Its argument.
      * @return Command exit status.
      */
@@ -161,6 +173,7 @@ public class CommandManager {
 
     /**
      * Executes needed command.
+     *
      * @param argument Its argument.
      * @return Command exit status.
      */
@@ -170,6 +183,7 @@ public class CommandManager {
 
     /**
      * Executes needed command.
+     *
      * @param argument Its argument.
      * @return Command exit status.
      */
@@ -179,6 +193,7 @@ public class CommandManager {
 
     /**
      * Executes needed command.
+     *
      * @param argument Its argument.
      * @return Command exit status.
      */
@@ -188,6 +203,7 @@ public class CommandManager {
 
     /**
      * Executes needed command.
+     *
      * @param argument Its argument.
      * @return Command exit status.
      */
@@ -197,6 +213,7 @@ public class CommandManager {
 
     /**
      * Executes needed command.
+     *
      * @param argument Its argument.
      * @return Command exit status.
      */
@@ -206,22 +223,27 @@ public class CommandManager {
 
     /**
      * Executes needed command.
+     *
      * @param argument Its argument.
      * @return Command exit status.
      */
     public boolean removeByEnPower(String argument) {
         return remove_by_EnPowCommand.execute(argument);
     }
+
     /**
      * Executes needed command.
+     *
      * @param argument Its argument.
      * @return Command exit status.
      */
     public boolean minByDistanceTravelled(String argument) {
         return min_by_distance_travelledCommand.execute(argument);
     }
+
     /**
      * Executes needed command.
+     *
      * @param argument Its argument.
      * @return Command exit status.
      */

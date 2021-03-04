@@ -12,7 +12,7 @@ import utility.Console;
  * Command 'remove_by_id'. Removes the element by its ID.
  */
 public class RemoveByIdCommand extends AbstractCommand {
-    private CollectionManager collectionManager;
+    private final CollectionManager collectionManager;
 
     public RemoveByIdCommand(CollectionManager collectionManager) {
         super("remove_by_id <ID>", "удалить элемент из коллекции по ID");
