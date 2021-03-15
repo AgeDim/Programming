@@ -1,9 +1,9 @@
 package run;
 
-import java.util.Scanner;
-
 import commands.*;
 import utility.*;
+
+import java.util.Scanner;
 
 /**
  * Main application class. Creates all instances and runs the program.
@@ -17,7 +17,9 @@ public class App {
     public static void main(String[] args) {
         try (Scanner userScanner = new Scanner(System.in)) {
             final String envVariable = "LABA";
-
+            if (System.getenv(envVariable) == null) {
+                throw new NullPointerException();
+            }
             VehicleAsker vehicleAsker = new VehicleAsker(userScanner);
             FileManager fileManager = new FileManager(envVariable);
             CollectionManager collectionManager = new CollectionManager(fileManager);
@@ -42,6 +44,8 @@ public class App {
             Console console = new Console(commandManager, userScanner, vehicleAsker);
 
             console.interactiveMode();
+        } catch (NullPointerException e) {
+            Console.printerror("Переменная окружения не найденна");
         }
 
     }
