@@ -1,26 +1,20 @@
 package utility;
 
-import run.App;
-
-import java.time.LocalDateTime;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
-
 import data.Coordinates;
 import data.FuelType;
 import data.VehicleType;
 import exceptions.IncorrectInputInScriptException;
-import exceptions.MustBeNotEmptyException;
 import exceptions.NotInDeclaredLimitsException;
+import exceptions.WrongInputFormatException;
+import run.App;
+
+import java.util.NoSuchElementException;
+import java.util.Scanner;
 
 /**
- * Asks a user a vehicle's value.
+ * Class {@code Input} defines methods to work with an input from various sources.
  */
 public class VehicleAsker {
-    private final float MAX_Y = 421;
-    private final float MAX_X = 252;
-    private final int MIN_enginePower = 0;
-    private final int MIN_distanceTravelled = 0;
     private Scanner userScanner;
     private boolean fileMode;
 
@@ -29,11 +23,28 @@ public class VehicleAsker {
         fileMode = false;
     }
 
-    public VehicleAsker(int generateNextId, String askName, Coordinates askCoordinates,
-                        LocalDateTime now, VehicleType askVehicleType, long askDistanceTravelled, double askEnginePower, FuelType askFuelType) {
+    public <T> T input(String question, String errorMessage, func<T> rule) {
+        T result;
+        while (true) {
+            System.out.print(question);
+            String data = userScanner.nextLine();
+            try {
+                result = rule.func(data);
+            } catch (NumberFormatException | WrongInputFormatException e) {
+                System.out.println(errorMessage);
+                continue;
+            }
+            return result;
 
+        }
     }
 
+    /**
+     * @return Scanner, which uses for user input.
+     */
+    public Scanner getUserScanner() {
+        return userScanner;
+    }
 
     /**
      * Sets a scanner to scan user input.
@@ -42,13 +53,6 @@ public class VehicleAsker {
      */
     public void setUserScanner(Scanner userScanner) {
         this.userScanner = userScanner;
-    }
-
-    /**
-     * @return Scanner, which uses for user input.
-     */
-    public Scanner getUserScanner() {
-        return userScanner;
     }
 
     /**
@@ -66,240 +70,140 @@ public class VehicleAsker {
     }
 
     /**
-     * Asks a user the vehicle's name.
+     * /**
+     * Method asks to input name of vehicle.
      *
-     * @return Marine's name.
-     * @throws IncorrectInputInScriptException If script is running and something goes wrong.
+     * @return name of the vehicle.
      */
-    public String askName() throws IncorrectInputInScriptException {
-        String name;
-        while (true) {
-            try {
-                Console.println("Введите имя:");
-                Console.print(App.PS2);
-                name = userScanner.nextLine().trim();
-                if (fileMode) Console.println(name);
-                if (name.equals("")) throw new MustBeNotEmptyException();
-                break;
-            } catch (NoSuchElementException exception) {
-                Console.printerror("имя не распознано!");
-                if (fileMode) throw new IncorrectInputInScriptException();
-            } catch (MustBeNotEmptyException exception) {
-                Console.printerror("имя не может быть пустым!");
-                if (fileMode) throw new IncorrectInputInScriptException();
-            } catch (IllegalStateException exception) {
-                Console.printerror("непредвиденная ошибка!");
-                System.exit(0);
+    public String inputVehicleName() {
+
+        func<String> interfc = (str) -> {
+            if (str.equals("") || str.equals("\n")) {
+                throw new WrongInputFormatException();
+            } else {
+                return str;
             }
-        }
-        return name;
+        };
+
+        return input("Введите имя: ", "Wrong name! Try again: ", interfc);
     }
 
     /**
-     * Asks a user the vehicle's X coordinate.
+     * Method asks to input X coordinate.
      *
-     * @return Vehicle's X coordinate.
-     * @throws IncorrectInputInScriptException If script is running and something goes wrong.
+     * @return vehicle's X coordinate.
      */
-    public double askX() throws IncorrectInputInScriptException {
-        String strX;
-        float x;
-        while (true) {
-            try {
-                Console.println("введите координату X < " + (MAX_X + 1) + ":");
-                Console.print(App.PS2);
-                strX = userScanner.nextLine().trim();
-                if (fileMode) Console.println(strX);
-                x = Float.parseFloat(strX);
-                if (x > MAX_X) throw new NotInDeclaredLimitsException();
-                break;
-            } catch (NoSuchElementException exception) {
-                Console.printerror("координата X не распознана!");
-                if (fileMode) throw new IncorrectInputInScriptException();
-            } catch (NotInDeclaredLimitsException exception) {
-                Console.printerror("координата X не может превышать " + MAX_X + "!");
-            } catch (NumberFormatException exception) {
-                Console.printerror("координата X должна быть представлена числом!");
-                if (fileMode) throw new IncorrectInputInScriptException();
-            }
-        }
-        return x;
+    public Float inputX() {
+        func<Float> interfc = (str) -> {
+            float res = Float.parseFloat(str);
+            if (res > 252)
+                throw new WrongInputFormatException();
+            return res;
+        };
+        return input("Введите координату X: (x <= 252) ", "Wrong Coordinate! Try again: ", interfc);
     }
 
     /**
-     * Asks a user the vehicle's Y coordinate.
+     * Method asks to input Y coordinate.
      *
-     * @return Vehicle's Y coordinate.
-     * @throws IncorrectInputInScriptException If script is running and something goes wrong.
+     * @return vehicle's Y coordinate.
      */
-    public Float askY() throws IncorrectInputInScriptException {
-        String strY;
-        float y;
-        while (true) {
-            try {
-                Console.println("введите координату Y < " + (MAX_Y + 1) + ":");
-                Console.print(App.PS2);
-                strY = userScanner.nextLine().trim();
-                if (fileMode) Console.println(strY);
-                y = Float.parseFloat(strY);
-                if (y > MAX_Y) throw new NotInDeclaredLimitsException();
-                break;
-            } catch (NoSuchElementException exception) {
-                Console.printerror("координата Y не распознана!");
-                if (fileMode) throw new IncorrectInputInScriptException();
-            } catch (NotInDeclaredLimitsException exception) {
-                Console.printerror("координата Y не может превышать " + MAX_Y + "!");
-                if (fileMode) throw new IncorrectInputInScriptException();
-            } catch (NumberFormatException exception) {
-                Console.printerror("координата Y должна быть представлена числом!");
-                if (fileMode) throw new IncorrectInputInScriptException();
+    public Float inputY() {
+        func<Float> interfc = (str) -> {
+            float res = Float.parseFloat(str);
+            if (res > 420) {
+                throw new WrongInputFormatException();
             }
-        }
-        return y;
+            return res;
+        };
+        return input("Введите координату Y: (y <= 420) ", "Wrong Coordinate! Try again: ", interfc);
     }
 
     /**
-     * Asks a user the vehicle's coordinates.
+     * Method asks to input coordinates.
      *
-     * @return Vehicle's coordinates.
-     * @throws IncorrectInputInScriptException If script is running and something goes wrong.
+     * @return vehicle's coordinates.
      */
-    public Coordinates askCoordinates() throws IncorrectInputInScriptException {
-        float x;
-        float y;
-        x = (float) askX();
-        y = askY();
-        return new Coordinates(x, y);
+    public Coordinates getCoordinates() {
+        return new Coordinates(inputX(), inputY());
     }
 
     /**
-     * Asks a user the vehicle's health.
+     * Method asks to input vehicle's Engine Power.
      *
-     * @return Vehicle's engine power.
-     * @throws IncorrectInputInScriptException If script is running and something goes wrong.
+     * @return engine power of the vehicle.
      */
-    public int askEnginePower() throws IncorrectInputInScriptException {
-        String strEnginePower;
-        int enginePower;
-        while (true) {
-            try {
-                Console.println("введите силу двигателя:");
-                Console.print(App.PS2);
-                strEnginePower = userScanner.nextLine().trim();
-                if (fileMode) Console.println(strEnginePower);
-                enginePower = Integer.parseInt(strEnginePower);
-                if (enginePower < MIN_enginePower) throw new NotInDeclaredLimitsException();
-                break;
-            } catch (NoSuchElementException exception) {
-                Console.printerror("сила двигателя не распознана!");
-                if (fileMode) throw new IncorrectInputInScriptException();
-            } catch (NotInDeclaredLimitsException exception) {
-                Console.printerror("сила двигателя должна быть больше нуля!");
-                if (fileMode) throw new IncorrectInputInScriptException();
-            } catch (NumberFormatException exception) {
-                Console.printerror("сила двигателя должна быть числом!");
-                if (fileMode) throw new IncorrectInputInScriptException();
+    public int inputEnPower() {
+        func<Integer> interfc = (str) -> {
+            int res = Integer.parseInt(str);
+            if (0 >= res) {
+                throw new WrongInputFormatException();
+
             }
-        }
-        return enginePower;
+            return res;
+        };
+        return input("Введите силу двигателя ", "Wrong Power Format! Try again: ", interfc);
     }
 
     /**
-     * Asks a user the vehicle's category.
+     * Method asks to input vehicle's distance travel.
      *
-     * @return Vehicle's fuel type.
-     * @throws IncorrectInputInScriptException If script is running and something goes wrong.
+     * @return distance travel of the vehicle.
      */
-    public FuelType askFuelType() throws IncorrectInputInScriptException {
-        String strFuelType;
-        FuelType fuelType;
-        while (true) {
-            try {
-                Console.println("список категорий - " + FuelType.nameList());
-                Console.println("введите категорию используемого топлива:");
-                Console.print(App.PS2);
-                strFuelType = userScanner.nextLine().trim();
-                if (fileMode) Console.println(strFuelType);
-                fuelType = FuelType.valueOf(strFuelType.toUpperCase());
-                break;
-            } catch (NoSuchElementException exception) {
-                Console.printerror("категория не распознана!");
-                if (fileMode) throw new IncorrectInputInScriptException();
-            } catch (IllegalArgumentException exception) {
-                Console.printerror("категории нет в списке!");
-                if (fileMode) throw new IncorrectInputInScriptException();
-            } catch (IllegalStateException exception) {
-                Console.printerror("непредвиденная ошибка!");
-                System.exit(0);
+    public int inputDistTravel() {
+        func<Integer> iterfc = (str) -> {
+            int span = Integer.parseInt(str);
+            if (span <= 0) {
+                throw new WrongInputFormatException();
             }
-        }
-        return fuelType;
+            return span;
+        };
+
+        return input("Введите дистанцию путешествия: ", "Wrong distance! Try again: ", iterfc);
     }
 
     /**
-     * Asks a user the vehicle's type.
+     * Method asks to input vehicle's type.
      *
-     * @return Vehicle's type.
-     * @throws IncorrectInputInScriptException If script is running and something goes wrong.
+     * @return type of vehicle.
      */
-    public VehicleType askVehicleType() throws IncorrectInputInScriptException {
-        String strVehicleType;
-        VehicleType type;
-        while (true) {
-            try {
-                Console.println("список категорий - " + VehicleType.nameList());
-                Console.println("введите категорию средства передвижения:");
-                Console.print(App.PS2);
-                strVehicleType = userScanner.nextLine().trim();
-                if (fileMode) Console.println(strVehicleType);
-                type = VehicleType.valueOf(strVehicleType.toUpperCase());
-                break;
-            } catch (NoSuchElementException exception) {
-                Console.printerror("категория не распознана!");
-                if (fileMode) throw new IncorrectInputInScriptException();
-            } catch (IllegalArgumentException exception) {
-                Console.printerror("категории нет в списке!");
-                if (fileMode) throw new IncorrectInputInScriptException();
-            } catch (IllegalStateException exception) {
-                Console.printerror("непредвиденная ошибка!");
-                System.exit(0);
+    public VehicleType inputVType() throws WrongInputFormatException {
+        func<VehicleType> interfc = (str) -> {
+            if (str.toUpperCase().matches("HELICOPTER|DRONE|CHOPPER|SPACESHIP")) {
+                return VehicleType.valueOf(str.toUpperCase());
+            } else {
+                throw new WrongInputFormatException();
             }
-        }
-        return type;
+        };
+        return input("Enter the vehicle type: (HELICOPTER,DRONE,CHOPPER,SPACESHIP) ",
+                "Wrong type format! Try again: ", interfc);
     }
 
     /**
-     * Asks a user the vehicle's distance of travelled.
+     * Method asks to input vehicle's fuel type.
      *
-     * @return Distance travelled.
-     * @throws IncorrectInputInScriptException If script is running and something goes wrong.
+     * @return fuel type of vehicle.
      */
-    public int askDistanceTravelled() throws IncorrectInputInScriptException {
-        String strDistanceTravelled;
-        int distanceTravelled;
-        while (true) {
-            try {
-                Console.println("введите дистанцию путешествия > " + (MIN_distanceTravelled) + ":");
-                Console.print(App.PS2);
-                strDistanceTravelled = userScanner.nextLine().trim();
-                if (fileMode) Console.println(strDistanceTravelled);
-                distanceTravelled = Integer.parseInt(strDistanceTravelled);
-                if (distanceTravelled < MIN_distanceTravelled) throw new NotInDeclaredLimitsException();
-                break;
-            } catch (NoSuchElementException exception) {
-                Console.printerror("дистанция не распознанна!");
-                if (fileMode) throw new IncorrectInputInScriptException();
-            } catch (NotInDeclaredLimitsException exception) {
-                Console.printerror("дистанция должна быть положительным числом и не меньше " + MIN_distanceTravelled + " !");
-                if (fileMode) throw new IncorrectInputInScriptException();
-            } catch (NumberFormatException exception) {
-                Console.printerror("дистанция должна быть числом!");
-                if (fileMode) throw new IncorrectInputInScriptException();
+    public FuelType inputFType() throws WrongInputFormatException {
+        func<FuelType> interfc = (str) -> {
+            if (str.toUpperCase().matches("GASOLINE|ALCOHOL|NUCLEAR|PLASMA")) {
+                return FuelType.valueOf(str.toUpperCase());
+            } else {
+                throw new WrongInputFormatException();
             }
-        }
-        return distanceTravelled;
+        };
+        return input("Enter the fuel type: (GASOLINE,ALCOHOL,NUCLEAR,PLASMA) ",
+                "Wrong type format! Try again: ", interfc);
     }
 
+    /**
+     * Finds and returns the next complete token from this input stream.
+     *
+     * @return the next token
+     */
+    public String next() {
+        return userScanner.next();
+    }
     /**
      * Asks a user a question.
      *
@@ -327,10 +231,5 @@ public class VehicleAsker {
             }
         }
         return answer.equals("+");
-    }
-
-    @Override
-    public String toString() {
-        return "Vehicle (вспомогательный класс для запросов пользователю)";
     }
 }

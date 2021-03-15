@@ -1,13 +1,12 @@
 package commands;
 
-import java.time.LocalDateTime;
-
 import data.Vehicle;
-import exceptions.IncorrectInputInScriptException;
-import exceptions.WrongAmountOfElementsException;
+import exceptions.WrongInputFormatException;
 import utility.CollectionManager;
 import utility.Console;
 import utility.VehicleAsker;
+
+import java.time.LocalDateTime;
 
 /**
  * Command 'add_if_max'. Adds a new element to collection if it's more than the maximal one.
@@ -29,29 +28,32 @@ public class AddIfMaxCommand extends AbstractCommand {
      */
     @Override
     public boolean execute(String argument) {
-        try {
-            if (!argument.isEmpty()) {
-                Console.println("использование: '" + getName() + "'");
-                return false;
+        if (!argument.isEmpty()) {
+            Console.println("использование: '" + getName() + "'");
+            return false;
+        }
+        Vehicle vehicleToAdd = null;
+        while (true) {
+            try {
+                vehicleToAdd = new Vehicle(
+                        collectionManager.generateNextId(),
+                        vehicleAsker.inputVehicleName(),
+                        vehicleAsker.getCoordinates(),
+                        LocalDateTime.now(),
+                        vehicleAsker.inputEnPower(),
+                        vehicleAsker.inputDistTravel(),
+                        vehicleAsker.inputVType(),
+                        vehicleAsker.inputFType()
+                );
+            } catch (WrongInputFormatException exception) {
+                Console.printerror("Неверный формат ввода");
             }
-            Vehicle vehicleToAdd = new Vehicle(
-                    collectionManager.generateNextId(),
-                    vehicleAsker.askName(),
-                    vehicleAsker.askCoordinates(),
-                    LocalDateTime.now(),
-                    vehicleAsker.askEnginePower(),
-                    vehicleAsker.askDistanceTravelled(),
-                    vehicleAsker.askVehicleType(),
-                    vehicleAsker.askFuelType()
-            );
             if (collectionManager.collectionSize() == 0 || vehicleToAdd.compareTo(collectionManager.GetMax()) > 0) {
                 collectionManager.addToCollection(vehicleToAdd);
                 Console.println("Vehicle успешно добавлен!");
                 return true;
             } else Console.printerror("значение Vehicle меньше, чем значение наибольшего из Vehicle!");
-        } catch (IncorrectInputInScriptException exception) {
-            Console.printerror("Ошибка исполнения скрипта!");
+            return false;
         }
-        return false;
     }
 }

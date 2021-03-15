@@ -1,12 +1,12 @@
 package commands;
 
-import java.time.LocalDateTime;
-
 import data.Vehicle;
-import exceptions.IncorrectInputInScriptException;
+import exceptions.WrongInputFormatException;
 import utility.CollectionManager;
 import utility.Console;
 import utility.VehicleAsker;
+
+import java.time.LocalDateTime;
 
 /**
  * Command 'remove_greater'. Removes elements greater than user entered.
@@ -28,36 +28,36 @@ public class RemoveGreaterCommand extends AbstractCommand {
      */
     @Override
     public boolean execute(String argument) {
-        try {
-            if (!argument.isEmpty()) {
-                Console.println("использование: '" + getName() + "'");
-                return false;
-            }
-            if (collectionManager.collectionSize() == 0) {
-                Console.printerror("Коллекция пуста!");
-                return false;
-            }
-            Vehicle vehicleToFind = new Vehicle(
-                    collectionManager.generateNextId(),
-                    vehicleAsker.askName(),
-                    vehicleAsker.askCoordinates(),
-                    LocalDateTime.now(),
-                    vehicleAsker.askEnginePower(),
-                    vehicleAsker.askDistanceTravelled(),
-                    vehicleAsker.askVehicleType(),
-                    vehicleAsker.askFuelType()
-            );
-            Vehicle vehicleFromCollection = collectionManager.getByValue(vehicleToFind);
-            if (vehicleFromCollection == null) {
-                Console.printerror("vehicle с такими характеристиками в коллекции нет!");
-                return false;
-            }
-            collectionManager.removeGreater(vehicleFromCollection);
-            Console.println("vehicles успешно удалены!");
-            return true;
-        } catch (IncorrectInputInScriptException exception) {
-            Console.printerror("Ошибка исполнения скрипта!");
+        if (!argument.isEmpty()) {
+            Console.println("использование: '" + getName() + "'");
+            return false;
         }
-        return false;
+        if (collectionManager.collectionSize() == 0) {
+            Console.printerror("Коллекция пуста!");
+            return false;
+        }
+        Vehicle vehicleToFind = null;
+        try {
+            vehicleToFind = new Vehicle(
+                    collectionManager.generateNextId(),
+                    vehicleAsker.inputVehicleName(),
+                    vehicleAsker.getCoordinates(),
+                    LocalDateTime.now(),
+                    vehicleAsker.inputEnPower(),
+                    vehicleAsker.inputDistTravel(),
+                    vehicleAsker.inputVType(),
+                    vehicleAsker.inputFType()
+            );
+        } catch (WrongInputFormatException e) {
+            Console.printerror("Неверный формат ввода");
+        }
+        Vehicle vehicleFromCollection = collectionManager.getByValue(vehicleToFind);
+        if (vehicleFromCollection == null) {
+            Console.printerror("vehicle с такими характеристиками в коллекции нет!");
+            return false;
+        }
+        collectionManager.removeGreater(vehicleFromCollection);
+        Console.println("vehicles успешно удалены!");
+        return true;
     }
 }

@@ -3,11 +3,7 @@ package run;
 import java.util.Scanner;
 
 import commands.*;
-import utility.CollectionManager;
-import utility.CommandManager;
-import utility.Console;
-import utility.FileManager;
-import utility.VehicleAsker;
+import utility.*;
 
 /**
  * Main application class. Creates all instances and runs the program.

@@ -1,12 +1,16 @@
 package commands;
 
-import java.time.LocalDateTime;
-
-import data.*;
+import data.Coordinates;
+import data.FuelType;
+import data.Vehicle;
+import data.VehicleType;
 import exceptions.IncorrectInputInScriptException;
+import exceptions.WrongInputFormatException;
 import utility.CollectionManager;
 import utility.Console;
 import utility.VehicleAsker;
+
+import java.time.LocalDateTime;
 
 /**
  * Command 'update'. Updates the information about selected marine.
@@ -54,17 +58,18 @@ public class UpdateCommand extends AbstractCommand {
 
             collectionManager.removeFromCollection(oldVehicle);
 
-            if (vehicleAsker.askQuestion("Хотите изменить имя средства передвижения?")) name = vehicleAsker.askName();
+            if (vehicleAsker.askQuestion("Хотите изменить имя средства передвижения?"))
+                name = vehicleAsker.inputVehicleName();
             if (vehicleAsker.askQuestion("Хотите изменить координаты средства передвижения?"))
-                coordinates = vehicleAsker.askCoordinates();
+                coordinates = vehicleAsker.getCoordinates();
             if (vehicleAsker.askQuestion("Хотите изменить силу двигателя передвижения?"))
-                enginePower = vehicleAsker.askEnginePower();
+                enginePower = vehicleAsker.inputEnPower();
             if (vehicleAsker.askQuestion("Хотите изменить дистанцию путешествия средства передвижения?"))
-                distanceTravelled = vehicleAsker.askDistanceTravelled();
+                distanceTravelled = vehicleAsker.inputDistTravel();
             if (vehicleAsker.askQuestion("Хотите изменить тип средства передвижения передвижения?"))
-                type = vehicleAsker.askVehicleType();
+                type = vehicleAsker.inputVType();
             if (vehicleAsker.askQuestion("Хотите изменить тип топлива средства передвижения?"))
-                fuelType = vehicleAsker.askFuelType();
+                fuelType = vehicleAsker.inputFType();
 
             collectionManager.addToCollection(new Vehicle(
                     id,
@@ -82,6 +87,8 @@ public class UpdateCommand extends AbstractCommand {
             Console.printerror("ID должен быть представлен числом!");
         } catch (IncorrectInputInScriptException exception) {
             Console.printerror("Ошибка исполнения скрипта!");
+        } catch (WrongInputFormatException exception) {
+            Console.printerror("Не то");
         }
         return false;
     }
