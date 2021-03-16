@@ -18,7 +18,7 @@ public class App {
         try (Scanner userScanner = new Scanner(System.in)) {
             final String envVariable = "LABA";
             if (System.getenv(envVariable) == null) {
-                throw new NullPointerException();
+                Console.printerror("Переменная окружения не найденна");
             }
             VehicleAsker vehicleAsker = new VehicleAsker(userScanner);
             FileManager fileManager = new FileManager(envVariable);
@@ -45,7 +45,6 @@ public class App {
 
             console.interactiveMode();
         } catch (NullPointerException e) {
-            Console.printerror("Переменная окружения не найденна");
         }
 
     }

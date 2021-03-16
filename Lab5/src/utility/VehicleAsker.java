@@ -23,13 +23,13 @@ public class VehicleAsker {
         fileMode = false;
     }
 
-    public <T> T input(String question, String errorMessage, func<T> rule) {
+    public <T> T input(String question, String errorMessage, Func<T> rule) {
         T result;
         while (true) {
             System.out.print(question);
             String data = userScanner.nextLine();
             try {
-                result = rule.func(data);
+                result = rule.Func(data);
             } catch (NumberFormatException | WrongInputFormatException e) {
                 System.out.println(errorMessage);
                 continue;
@@ -77,7 +77,7 @@ public class VehicleAsker {
      */
     public String inputVehicleName() {
 
-        func<String> interfc = (str) -> {
+        Func<String> interfc = (str) -> {
             if (str.equals("") || str.equals("\n")) {
                 throw new WrongInputFormatException();
             } else {
@@ -94,7 +94,7 @@ public class VehicleAsker {
      * @return vehicle's X coordinate.
      */
     public Float inputX() {
-        func<Float> interfc = (str) -> {
+        Func<Float> interfc = (str) -> {
             float res = Float.parseFloat(str);
             if (res > 252)
                 throw new WrongInputFormatException();
@@ -109,7 +109,7 @@ public class VehicleAsker {
      * @return vehicle's Y coordinate.
      */
     public Float inputY() {
-        func<Float> interfc = (str) -> {
+        Func<Float> interfc = (str) -> {
             float res = Float.parseFloat(str);
             if (res > 420) {
                 throw new WrongInputFormatException();
@@ -134,7 +134,7 @@ public class VehicleAsker {
      * @return engine power of the vehicle.
      */
     public int inputEnPower() {
-        func<Integer> interfc = (str) -> {
+        Func<Integer> interfc = (str) -> {
             int res = Integer.parseInt(str);
             if (0 >= res) {
                 throw new WrongInputFormatException();
@@ -151,7 +151,7 @@ public class VehicleAsker {
      * @return distance travel of the vehicle.
      */
     public int inputDistTravel() {
-        func<Integer> iterfc = (str) -> {
+        Func<Integer> iterfc = (str) -> {
             int span = Integer.parseInt(str);
             if (span <= 0) {
                 throw new WrongInputFormatException();
@@ -168,7 +168,7 @@ public class VehicleAsker {
      * @return type of vehicle.
      */
     public VehicleType inputVType() throws WrongInputFormatException {
-        func<VehicleType> interfc = (str) -> {
+        Func<VehicleType> interfc = (str) -> {
             if (str.toUpperCase().matches("HELICOPTER|DRONE|CHOPPER|SPACESHIP")) {
                 return VehicleType.valueOf(str.toUpperCase());
             } else {
@@ -185,7 +185,7 @@ public class VehicleAsker {
      * @return fuel type of vehicle.
      */
     public FuelType inputFType() throws WrongInputFormatException {
-        func<FuelType> interfc = (str) -> {
+        Func<FuelType> interfc = (str) -> {
             if (str.toUpperCase().matches("GASOLINE|ALCOHOL|NUCLEAR|PLASMA")) {
                 return FuelType.valueOf(str.toUpperCase());
             } else {

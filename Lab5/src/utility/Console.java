@@ -1,14 +1,13 @@
 package utility;
 
+import run.App;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
-
-import exceptions.ScriptRecursionException;
-import run.App;
 
 /**
  * Operates command input.
@@ -23,6 +22,43 @@ public class Console {
         this.commandManager = commandManager;
         this.userScanner = userScanner;
         this.vehicleAsker = vehicleAsker;
+    }
+
+    /**
+     * Prints toOut.toString() to Console
+     *
+     * @param toOut Object to print
+     */
+    public static void print(Object toOut) {
+        System.out.print(toOut);
+    }
+
+    /**
+     * Prints toOut.toString() + \n to Console
+     *
+     * @param toOut Object to print
+     */
+    public static void println(Object toOut) {
+        System.out.println(toOut);
+    }
+
+    /**
+     * Prints error: toOut.toString() to Console
+     *
+     * @param toOut Error to print
+     */
+    public static void printerror(Object toOut) {
+        System.out.println("error: " + toOut);
+    }
+
+    /**
+     * Prints formatted 2-element table to Console
+     *
+     * @param element1 Left element of the row.
+     * @param element2 Right element of the row.
+     */
+    public static void printtable(Object element1, Object element2) {
+        System.out.printf("%-37s%-1s%n", element1, element2);
     }
 
     /**
@@ -54,7 +90,7 @@ public class Console {
         int commandStatus;
         scriptStack.add(argument);
         try (Scanner scriptScanner = new Scanner(new File(argument))) {
-            if (!scriptScanner.hasNext()) throw new NoSuchElementException();
+            if (!scriptScanner.hasNext()) Console.printerror("Файл со скриптом пуст!");
             Scanner tmpScanner = vehicleAsker.getUserScanner();
             vehicleAsker.setUserScanner(scriptScanner);
             vehicleAsker.setFileMode();
@@ -68,7 +104,8 @@ public class Console {
                 Console.println(App.PS1 + String.join(" ", userCommand));
                 if (userCommand[0].equals("execute_script")) {
                     for (String script : scriptStack) {
-                        if (userCommand[1].equals(script)) throw new ScriptRecursionException();
+                        if (userCommand[1].equals(script))
+                            Console.printerror("Скрипты не могут вызываться рекурсивно!");
                     }
                 }
                 commandStatus = launchCommand(userCommand);
@@ -80,10 +117,6 @@ public class Console {
             return commandStatus;
         } catch (FileNotFoundException exception) {
             Console.printerror("Файл со скриптом не найден!");
-        } catch (NoSuchElementException exception) {
-            Console.printerror("Файл со скриптом пуст!");
-        } catch (ScriptRecursionException exception) {
-            Console.printerror("Скрипты не могут вызываться рекурсивно!");
         } finally {
             scriptStack.remove(scriptStack.size() - 1);
         }
@@ -151,43 +184,6 @@ public class Console {
                 if (!commandManager.noSuchCommand(userCommand[0])) return 1;
         }
         return 0;
-    }
-
-    /**
-     * Prints toOut.toString() to Console
-     *
-     * @param toOut Object to print
-     */
-    public static void print(Object toOut) {
-        System.out.print(toOut);
-    }
-
-    /**
-     * Prints toOut.toString() + \n to Console
-     *
-     * @param toOut Object to print
-     */
-    public static void println(Object toOut) {
-        System.out.println(toOut);
-    }
-
-    /**
-     * Prints error: toOut.toString() to Console
-     *
-     * @param toOut Error to print
-     */
-    public static void printerror(Object toOut) {
-        System.out.println("error: " + toOut);
-    }
-
-    /**
-     * Prints formatted 2-element table to Console
-     *
-     * @param element1 Left element of the row.
-     * @param element2 Right element of the row.
-     */
-    public static void printtable(Object element1, Object element2) {
-        System.out.printf("%-37s%-1s%n", element1, element2);
     }
 
     @Override
