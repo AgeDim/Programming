@@ -1,16 +1,15 @@
 package utility;
 
-import java.io.FileOutputStream;
-import java.io.File;
-import java.io.PrintWriter;
-import java.io.IOException;
+import data.Coordinates;
+import data.FuelType;
+import data.Vehicle;
+import data.VehicleType;
+
+import java.io.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.io.FileNotFoundException;
 import java.util.Collection;
 import java.util.Stack;
-
-import data.*;
 
 /**
  * Operates the file for saving/loading collection.

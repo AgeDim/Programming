@@ -1,9 +1,9 @@
 package utility;
 
+import commands.Command;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import commands.Command;
 
 /**
  * Operates the commands.

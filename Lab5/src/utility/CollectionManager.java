@@ -164,7 +164,7 @@ public class CollectionManager {
      * @param vehicleToCompare A vehicle to compare with.
      */
     public void removeGreater(Vehicle vehicleToCompare) {
-        vehicleCollection.removeIf(vehicle -> vehicle.compareTo(vehicleToCompare) > 0);
+        vehicleCollection.removeIf(vehicle -> vehicle.getName().compareTo(vehicleToCompare.getName()) > 0);
     }
 
     /**

@@ -127,10 +127,12 @@ public class Vehicle implements Comparable<Vehicle> {
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        Vehicle vehicleObj = (Vehicle) obj;
-        return (coordinates == vehicleObj.getCoordinates()) && (enginePower.equals(vehicleObj.getEnginePower()))
-                && (distanceTravelled == vehicleObj.getDistanceTravelled());
-
+        if (obj instanceof Vehicle) {
+            Vehicle vehicleObj = (Vehicle) obj;
+            return name.equals(vehicleObj.getName()) && coordinates.equals(vehicleObj.getCoordinates()) &&
+                    enginePower.equals(vehicleObj.getEnginePower()) &&
+                    distanceTravelled == vehicleObj.getDistanceTravelled();
+        }
+        return false;
     }
 }

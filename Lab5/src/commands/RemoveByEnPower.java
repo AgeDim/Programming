@@ -2,9 +2,6 @@ package commands;
 
 
 import data.Vehicle;
-import exceptions.VehicleNotFoundException;
-import exceptions.WrongAmountOfElementsException;
-import exceptions.CollectionIsEmptyException;
 import utility.CollectionManager;
 import utility.Console;
 
@@ -36,12 +33,13 @@ public class RemoveByEnPower extends AbstractCommand {
                 return false;
             }
             int enginePower = Integer.parseInt(argument);
-            Vehicle vehicleToRemove = collectionManager.getByEnginePower(enginePower);
-            if (vehicleToRemove == null) {
+            Vehicle vehicleToRemove1 = collectionManager.getByEnginePower(enginePower);
+            if (vehicleToRemove1 == null) {
                 Console.printerror("Vehicle с таким engine power в коллекции нет!");
                 return false;
             }
-            collectionManager.removeFromCollection(vehicleToRemove);
+            collectionManager.removeFromCollection(vehicleToRemove1);
+
             Console.println("Vehicle успешно удален!");
             return true;
         } catch (NumberFormatException exception) {
