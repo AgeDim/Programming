@@ -1,7 +1,6 @@
 package run;
 
 import commands.*;
-import exceptions.NotFoundEnvException;
 import utility.*;
 
 import java.util.Scanner;
@@ -18,7 +17,7 @@ public class App {
     public static void main(String[] args) {
         try (Scanner userScanner = new Scanner(System.in)) {
             final String envVariable = "LABA";
-            if (System.getenv(envVariable) == null)throw new NotFoundEnvException();
+            if (System.getenv(envVariable) != null) {
             VehicleAsker vehicleAsker = new VehicleAsker(userScanner);
             FileManager fileManager = new FileManager(envVariable);
             CollectionManager collectionManager = new CollectionManager(fileManager);
@@ -42,8 +41,8 @@ public class App {
             );
             Console console = new Console(commandManager, userScanner, vehicleAsker);
             console.interactiveMode();
-        } catch (NotFoundEnvException e) {
+        } else {
             Console.printerror("Переменная окружения не найденна!");
         }
     }
-}
+}}
