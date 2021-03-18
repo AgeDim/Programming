@@ -204,6 +204,7 @@ public class VehicleAsker {
     public String next() {
         return userScanner.next();
     }
+
     /**
      * Asks a user a question.
      *

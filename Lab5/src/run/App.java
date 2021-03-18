@@ -18,31 +18,32 @@ public class App {
         try (Scanner userScanner = new Scanner(System.in)) {
             final String envVariable = "LABA";
             if (System.getenv(envVariable) != null) {
-            VehicleAsker vehicleAsker = new VehicleAsker(userScanner);
-            FileManager fileManager = new FileManager(envVariable);
-            CollectionManager collectionManager = new CollectionManager(fileManager);
-            CommandManager commandManager = new CommandManager(
-                    new HelpCommand(),
-                    new InfoCommand(collectionManager),
-                    new ShowCommand(collectionManager),
-                    new AddCommand(collectionManager, vehicleAsker),
-                    new UpdateCommand(collectionManager, vehicleAsker),
-                    new RemoveByIdCommand(collectionManager),
-                    new ClearCommand(collectionManager),
-                    new SaveCommand(collectionManager),
-                    new ExitCommand(),
-                    new ExecuteScriptCommand(),
-                    new AddIfMaxCommand(collectionManager, vehicleAsker),
-                    new RemoveGreaterCommand(collectionManager, vehicleAsker),
-                    new RemoveFirstCommand(collectionManager),
-                    new RemoveByEnPower(collectionManager),
-                    new MinByDistanceTravelledCommand(collectionManager),
-                    new FilterContainsNameCommand(collectionManager)
-            );
-            Console console = new Console(commandManager, userScanner, vehicleAsker);
-            console.interactiveMode();
-        } else {
-            Console.printerror("Переменная окружения не найденна!");
+                VehicleAsker vehicleAsker = new VehicleAsker(userScanner);
+                FileManager fileManager = new FileManager(envVariable);
+                CollectionManager collectionManager = new CollectionManager(fileManager);
+                CommandManager commandManager = new CommandManager(
+                        new HelpCommand(),
+                        new InfoCommand(collectionManager),
+                        new ShowCommand(collectionManager),
+                        new AddCommand(collectionManager, vehicleAsker),
+                        new UpdateCommand(collectionManager, vehicleAsker),
+                        new RemoveByIdCommand(collectionManager),
+                        new ClearCommand(collectionManager),
+                        new SaveCommand(collectionManager),
+                        new ExitCommand(),
+                        new ExecuteScriptCommand(),
+                        new AddIfMaxCommand(collectionManager, vehicleAsker),
+                        new RemoveGreaterCommand(collectionManager, vehicleAsker),
+                        new RemoveFirstCommand(collectionManager),
+                        new RemoveByEnPower(collectionManager),
+                        new MinByDistanceTravelledCommand(collectionManager),
+                        new FilterContainsNameCommand(collectionManager)
+                );
+                Console console = new Console(commandManager, userScanner, vehicleAsker);
+                console.interactiveMode();
+            } else {
+                Console.printerror("Переменная окружения не найденна!");
+            }
         }
     }
-}}
+}
