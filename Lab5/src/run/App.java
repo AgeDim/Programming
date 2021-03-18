@@ -44,8 +44,6 @@ public class App {
             Console console = new Console(commandManager, userScanner, vehicleAsker);
 
             console.interactiveMode();
-        } catch (NullPointerException e) {
-        }
-
+        } 
     }
 }
