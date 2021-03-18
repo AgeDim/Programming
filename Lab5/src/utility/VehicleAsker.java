@@ -186,7 +186,7 @@ public class VehicleAsker {
      */
     public FuelType inputFType() throws WrongInputFormatException {
         Func<FuelType> interfc = (str) -> {
-            if (str.toUpperCase().matches("GASOLINE|ALCOHOL|NUCLEAR|PLASMA")) {
+            if (str.toUpperCase().matches("GASOLINE|ALCOHOL|NUCLEAR|PLASMA|NULL")) {
                 return FuelType.valueOf(str.toUpperCase());
             } else {
                 throw new WrongInputFormatException();

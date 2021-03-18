@@ -7,7 +7,9 @@ public enum FuelType {
     GASOLINE,
     ALCOHOL,
     NUCLEAR,
-    PLASMA;
+    PLASMA,
+    NULL;
+
 
     /**
      * Generates a beautiful list of enum string values.

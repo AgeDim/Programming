@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 /**
  * info about Vehicle.
  */
+
 public class Vehicle implements Comparable<Vehicle> {
     private final Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private final String name; //Поле не может быть null, Строка не может быть пустой

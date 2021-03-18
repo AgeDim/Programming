@@ -1,9 +1,6 @@
 package utility;
 
-import data.Coordinates;
-import data.FuelType;
-import data.Vehicle;
-import data.VehicleType;
+import data.*;
 
 import java.io.*;
 import java.time.LocalDateTime;

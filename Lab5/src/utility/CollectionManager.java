@@ -1,10 +1,10 @@
 package utility;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.Stack;
 
 import data.Vehicle;
-import exceptions.CollectionIsEmptyException;
 
 import java.util.Collections;
 
@@ -117,12 +117,9 @@ public class CollectionManager {
 
     /**
      * @return Vehicle, who has min distance travelled.
-     * @throws CollectionIsEmptyException If collection is empty.
      */
     public Vehicle minByDistanceTravelled() {
-        return Collections.min(vehicleCollection, (o1, o2) -> {
-            return o1.getDistanceTravelled() - o2.getDistanceTravelled();
-        });
+        return Collections.min(vehicleCollection, Comparator.comparingInt(Vehicle::getDistanceTravelled));
     }
 
     /**
