@@ -14,6 +14,7 @@ import java.util.Scanner;
 /**
  * Class {@code Input} defines methods to work with an input from various sources.
  */
+
 public class VehicleAsker {
     private Scanner userScanner;
     private boolean fileMode;

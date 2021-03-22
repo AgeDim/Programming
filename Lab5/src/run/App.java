@@ -42,7 +42,7 @@ public class App {
                 Console console = new Console(commandManager, userScanner, vehicleAsker);
                 console.interactiveMode();
             } else {
-                Console.printerror("Переменная окружения LABA не найденна!");
+                Console.printerror("Переменная окружения LABA не найденна!блямблям");
             }
         }
     }
