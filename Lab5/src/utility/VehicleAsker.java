@@ -1,8 +1,6 @@
 package utility;
 
-import data.Coordinates;
-import data.FuelType;
-import data.VehicleType;
+import data.*;
 import exceptions.IncorrectInputInScriptException;
 import exceptions.NotInDeclaredLimitsException;
 import exceptions.WrongInputFormatException;

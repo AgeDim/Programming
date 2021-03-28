@@ -18,6 +18,7 @@ public class CollectionManager {
     private LocalDateTime lastSaveTime;
     private final FileManager fileManager;
 
+
     public CollectionManager(FileManager fileManager) {
         this.lastInitTime = null;
         this.lastSaveTime = null;

@@ -27,10 +27,10 @@ public class FileManager {
         String output;
         try (PrintWriter pw = new PrintWriter(new FileOutputStream("vehicleCollection.csv"))) {
             for (Vehicle vehicle : collection) {
-                output = "" + vehicle.getId() + "," + vehicle.getName() + "," + vehicle.getCoordinates().getX() + "," +
-                        vehicle.getCoordinates().getY() + "," + vehicle.getCreationDate() + "," +
-                        vehicle.getEnginePower() + "," + vehicle.getDistanceTravelled() + "," + vehicle.getType() +
-                        "," + (vehicle.getFuelType() == null ? "" : vehicle.getFuelType()) + "\n";
+                output = "" + vehicle.getId() + ";" + vehicle.getName() + ";" + vehicle.getCoordinates().getX() + ";" +
+                        vehicle.getCoordinates().getY() + ";" + vehicle.getCreationDate() + ";" +
+                        vehicle.getEnginePower() + ";" + vehicle.getDistanceTravelled() + ";" + vehicle.getType() +
+                        ";" + (vehicle.getFuelType() == null ? "" : vehicle.getFuelType()) + "\n";
 
                 pw.write(output);
                 pw.flush();

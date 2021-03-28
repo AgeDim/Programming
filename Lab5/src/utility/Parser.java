@@ -42,7 +42,7 @@ public class Parser {
      * @return columnList
      */
     public ArrayList<String> getItems(String fileLine) {
-        String[] splitedText = fileLine.split(",", 9);
+        String[] splitedText = fileLine.split(";", 9);
         ArrayList<String> columnList = new ArrayList<String>();
         for (String s : splitedText) {
             //Если колонка начинается на кавычки или заканчиваеться на кавычки
