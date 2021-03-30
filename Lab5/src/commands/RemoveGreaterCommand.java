@@ -48,16 +48,12 @@ public class RemoveGreaterCommand extends AbstractCommand {
                     vehicleAsker.inputVType(),
                     vehicleAsker.inputFType()
             );
+            collectionManager.removeGreater(vehicleToFind);
+            Console.println("vehicles успешно удалены!");
+            return true;
         } catch (WrongInputFormatException e) {
             Console.printerror("Неверный формат ввода");
         }
-        Vehicle vehicleFromCollection = collectionManager.getByValue(vehicleToFind);
-        if (vehicleFromCollection == null) {
-            Console.printerror("vehicle с такими характеристиками в коллекции нет!");
-            return false;
-        }
-        collectionManager.removeGreater(vehicleFromCollection);
-        Console.println("vehicles успешно удалены!");
-        return true;
+        return false;
     }
 }
