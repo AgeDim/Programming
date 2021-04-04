@@ -20,7 +20,7 @@ public class UpdateCommand extends AbstractCommand {
     private final VehicleAsker vehicleAsker;
 
     public UpdateCommand(CollectionManager collectionManager, VehicleAsker vehicleAsker) {
-        super("update <ID> {element}", "update value of element for ID");
+        super("update <ID> {element}", "обновить значение элемента коллекции по ID");
         this.collectionManager = collectionManager;
         this.vehicleAsker = vehicleAsker;
     }
@@ -34,17 +34,17 @@ public class UpdateCommand extends AbstractCommand {
     public boolean execute(String argument) {
         try {
             if (argument.isEmpty()) {
-                Console.println("using: '" + getName() + "'");
+                Console.println("использование: '" + getName() + "'");
                 return false;
             }
             if (collectionManager.collectionSize() == 0) {
-                Console.printerror("Collection is empty!");
+                Console.printerror("Коллекция пуста!");
             }
 
             int id = Integer.parseInt(argument);
             Vehicle oldVehicle = collectionManager.getById(id);
             if (oldVehicle == null) {
-                Console.printerror("Vehicle with this ID not found!");
+                Console.printerror("Vehicle с таким ID в коллекции нет!");
                 return false;
             }
 
@@ -58,17 +58,17 @@ public class UpdateCommand extends AbstractCommand {
 
             collectionManager.removeFromCollection(oldVehicle);
 
-            if (vehicleAsker.askQuestion("Do you want to change a name of vehicle?"))
+            if (vehicleAsker.askQuestion("Хотите изменить имя средства передвижения?"))
                 name = vehicleAsker.inputVehicleName();
-            if (vehicleAsker.askQuestion("Do you want to change a coordinates of vehicle?"))
+            if (vehicleAsker.askQuestion("Хотите изменить координаты средства передвижения?"))
                 coordinates = vehicleAsker.getCoordinates();
-            if (vehicleAsker.askQuestion("Do you want to change a engine power of vehicle?"))
+            if (vehicleAsker.askQuestion("Хотите изменить силу двигателя передвижения?"))
                 enginePower = vehicleAsker.inputEnPower();
-            if (vehicleAsker.askQuestion("Do you want to change a distance travelled of vehicle?"))
+            if (vehicleAsker.askQuestion("Хотите изменить дистанцию путешествия средства передвижения?"))
                 distanceTravelled = vehicleAsker.inputDistTravel();
-            if (vehicleAsker.askQuestion("Do you want to change a type of vehicle?"))
+            if (vehicleAsker.askQuestion("Хотите изменить тип средства передвижения передвижения?"))
                 type = vehicleAsker.inputVType();
-            if (vehicleAsker.askQuestion("Do you want to change a fuel type of vehicle?"))
+            if (vehicleAsker.askQuestion("Хотите изменить тип топлива средства передвижения?"))
                 fuelType = vehicleAsker.inputFType();
 
             collectionManager.addToCollection(new Vehicle(
@@ -81,14 +81,14 @@ public class UpdateCommand extends AbstractCommand {
                     type,
                     fuelType
             ));
-            Console.println("Vehicle is updated!");
+            Console.println("Vehicle успешно изменен!");
             return true;
         } catch (NumberFormatException exception) {
-            Console.printerror("ID must be a number!");
+            Console.printerror("ID должен быть представлен числом!");
         } catch (IncorrectInputInScriptException exception) {
-            Console.printerror("Script error!");
+            Console.printerror("Ошибка исполнения скрипта!");
         } catch (WrongInputFormatException exception) {
-            Console.printerror("Incorrect input format");
+            Console.printerror("Не то");
         }
         return false;
     }

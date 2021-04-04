@@ -10,7 +10,7 @@ public class FilterContainsNameCommand extends AbstractCommand {
     private final CollectionManager collectionManager;
 
     public FilterContainsNameCommand(CollectionManager collectionManager) {
-        super("filter_by_name <name>", "output element, values of name have this line");
+        super("filter_by_name <name>", "вывести элементы, значение поля name которых содержит заданную подстроку");
         this.collectionManager = collectionManager;
     }
 
@@ -22,11 +22,11 @@ public class FilterContainsNameCommand extends AbstractCommand {
     @Override
     public boolean execute(String argument) {
         if (argument.isEmpty()) {
-            Console.println("using: '" + getName() + "'");
+            Console.println("использование: '" + getName() + "'");
             return false;
         }
         if (collectionManager.collectionSize() == 0) {
-            Console.printerror("collection is empty!");
+            Console.printerror("Коллекция пуста!");
             return false;
         } else {
             String filteredInfo = collectionManager.vehicleFilteredInfo(argument);
@@ -34,7 +34,7 @@ public class FilterContainsNameCommand extends AbstractCommand {
                 Console.println(filteredInfo);
                 return true;
             } else {
-                Console.println("In collection not found vehicle with this line!!");
+                Console.println("В коллекции нет vehicle с заданным именем!");
                 return false;
             }
         }

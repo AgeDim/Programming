@@ -7,7 +7,7 @@ import utility.Console;
  */
 public class ExecuteScriptCommand extends AbstractCommand {
     public ExecuteScriptCommand() {
-        super("execute_script <file_name>", "use a script from file");
+        super("execute_script <file_name>", "исполнить скрипт из указанного файла");
     }
 
     /**
@@ -18,10 +18,10 @@ public class ExecuteScriptCommand extends AbstractCommand {
     @Override
     public boolean execute(String argument) {
         if (argument.isEmpty()) {
-            Console.println("using: '" + getName() + "'");
+            Console.println("использование: '" + getName() + "'");
             return false;
         } else {
-            Console.println("implement script'" + argument + "'...");
+            Console.println("выполняю скрипт '" + argument + "'...");
             return true;
         }
     }

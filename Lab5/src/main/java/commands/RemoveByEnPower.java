@@ -12,7 +12,7 @@ public class RemoveByEnPower extends AbstractCommand {
     private final CollectionManager collectionManager;
 
     public RemoveByEnPower(CollectionManager collectionManager) {
-        super("remove_by_EnPow <enginePower>", "remove element for engine power");
+        super("remove_by_EnPow <enginePower>", "удалить элемент из коллекции по engine power");
         this.collectionManager = collectionManager;
     }
 
@@ -25,25 +25,25 @@ public class RemoveByEnPower extends AbstractCommand {
     public boolean execute(String argument) {
         try {
             if (argument.isEmpty()) {
-                Console.println("using: '" + getName() + "'");
+                Console.println("использование: '" + getName() + "'");
                 return false;
             }
             if (collectionManager.collectionSize() == 0) {
-                Console.printerror("Collections is empty!");
+                Console.printerror("Коллекция пуста!");
                 return false;
             }
             int enginePower = Integer.parseInt(argument);
             Vehicle vehicleToRemove1 = collectionManager.getByEnginePower(enginePower);
             if (vehicleToRemove1 == null) {
-                Console.printerror("Vehicle with this engine power not found in collection!");
+                Console.printerror("Vehicle с таким engine power в коллекции нет!");
                 return false;
             }
             collectionManager.removeFromCollection(vehicleToRemove1);
 
-            Console.println("Vehicle successfully remove!");
+            Console.println("Vehicle успешно удален!");
             return true;
         } catch (NumberFormatException exception) {
-            Console.printerror("Engine power must be a number!");
+            Console.printerror("Engine power должен быть представлен числом!");
         }
         return false;
     }

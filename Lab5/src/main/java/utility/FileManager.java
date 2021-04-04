@@ -1,6 +1,9 @@
 package utility;
 
-import data.*;
+import data.Coordinates;
+import data.FuelType;
+import data.Vehicle;
+import data.VehicleType;
 
 import java.io.*;
 import java.time.LocalDateTime;
@@ -11,6 +14,7 @@ import java.util.Stack;
 /**
  * Operates the file for saving/loading collection.
  */
+
 public class FileManager {
     private final String envVariable;
 
@@ -27,7 +31,7 @@ public class FileManager {
         String output;
         try (PrintWriter pw = new PrintWriter(new FileOutputStream(System.getenv(envVariable)))) {
             for (Vehicle vehicle : collection) {
-                output = "\"" + vehicle.getId() + "\",\"" + vehicle.getName() + "\",\"" + vehicle.getCoordinates().getX()
+                output = "\"" + vehicle.getId() + "\",\"" + vehicle.getName().replace("\"", "\"\"") + "\",\"" + vehicle.getCoordinates().getX()
                         + "\",\"" + vehicle.getCoordinates().getY() + "\",\"" + vehicle.getCreationDate() + "\",\"" +
                         vehicle.getEnginePower() + "\",\"" + vehicle.getDistanceTravelled() + "\",\"" + vehicle.getType() +
                         "\",\"" + (vehicle.getFuelType() == null ? "" : vehicle.getFuelType()) + "\"\n";
@@ -101,5 +105,7 @@ public class FileManager {
     @Override
     public String toString() {
         return "FileManager (class for processing file)";
+
+
     }
 }

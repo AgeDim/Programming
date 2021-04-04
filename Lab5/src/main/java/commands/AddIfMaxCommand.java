@@ -16,7 +16,7 @@ public class AddIfMaxCommand extends AbstractCommand {
     private final VehicleAsker vehicleAsker;
 
     public AddIfMaxCommand(CollectionManager collectionManager, VehicleAsker vehicleAsker) {
-        super("add_if_max {element}", "Adds a new element to collection if it's more than the maximal one");
+        super("add_if_max {element}", "добавить новый элемент, если его значение больше, чем у наибольшего");
         this.collectionManager = collectionManager;
         this.vehicleAsker = vehicleAsker;
     }
@@ -46,13 +46,13 @@ public class AddIfMaxCommand extends AbstractCommand {
                         vehicleAsker.inputFType()
                 );
             } catch (WrongInputFormatException exception) {
-                Console.printerror("Incorrect input");
+                Console.printerror("Неверный формат ввода");
             }
             if (collectionManager.collectionSize() == 0 || vehicleToAdd.compareTo(collectionManager.GetMax()) > 0) {
                 collectionManager.addToCollection(vehicleToAdd);
-                Console.println("Vehicle successfully added!");
+                Console.println("Vehicle успешно добавлен!");
                 return true;
-            } else Console.printerror("value og Vehicle less, than values highest Vehicle!");
+            } else Console.printerror("значение Vehicle меньше, чем значение наибольшего из Vehicle!");
             return false;
         }
     }

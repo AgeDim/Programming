@@ -10,7 +10,7 @@ public class SaveCommand extends AbstractCommand {
     private final CollectionManager collectionManager;
 
     public SaveCommand(CollectionManager collectionManager) {
-        super("save", "save collection in file");
+        super("save", "сохранить коллекцию в файл");
         this.collectionManager = collectionManager;
     }
 
@@ -22,7 +22,7 @@ public class SaveCommand extends AbstractCommand {
     @Override
     public boolean execute(String argument) {
         if (!argument.isEmpty()) {
-            Console.println("using: '" + getName() + "'");
+            Console.println("использование: '" + getName() + "'");
             return false;
         } else {
             collectionManager.saveCollection();

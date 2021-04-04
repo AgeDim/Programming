@@ -16,7 +16,7 @@ public class RemoveGreaterCommand extends AbstractCommand {
     private final VehicleAsker vehicleAsker;
 
     public RemoveGreaterCommand(CollectionManager collectionManager, VehicleAsker vehicleAsker) {
-        super("remove_greater {element}", "remove elements in collection more than the given");
+        super("remove_greater {element}", "удалить из коллекции все элементы, превышающие заданный");
         this.collectionManager = collectionManager;
         this.vehicleAsker = vehicleAsker;
     }
@@ -29,14 +29,14 @@ public class RemoveGreaterCommand extends AbstractCommand {
     @Override
     public boolean execute(String argument) {
         if (!argument.isEmpty()) {
-            Console.println("using: '" + getName() + "'");
+            Console.println("использование: '" + getName() + "'");
             return false;
         }
         if (collectionManager.collectionSize() == 0) {
-            Console.printerror("Collection is empty!");
+            Console.printerror("Коллекция пуста!");
             return false;
         }
-        Vehicle vehicleToFind = null;
+        Vehicle vehicleToFind;
         try {
             vehicleToFind = new Vehicle(
                     collectionManager.generateNextId(),
@@ -48,16 +48,11 @@ public class RemoveGreaterCommand extends AbstractCommand {
                     vehicleAsker.inputVType(),
                     vehicleAsker.inputFType()
             );
-
-            if(collectionManager.removeGreater(vehicleToFind)){
-                Console.println("Vehicle's removed!");
-            }
-            else{
-                Console.printerror("This vehicle's not found in collection!");
-            }
+            collectionManager.removeGreater(vehicleToFind);
+            Console.println("vehicles успешно удалены!");
             return true;
         } catch (WrongInputFormatException e) {
-            Console.printerror("Incorrect input format");
+            Console.printerror("Неверный формат ввода");
         }
         return false;
     }

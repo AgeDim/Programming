@@ -29,8 +29,8 @@ public class CommandManager {
 
     public CommandManager(Command helpCommand, Command infoCommand, Command showCommand, Command addCommand, Command updateCommand,
                           Command removeByIdCommand, Command clearCommand, Command saveCommand, Command exitCommand, Command executeScriptCommand,
-                          Command addIfMaxCommand, Command removeGreaterCommand, Command remove_FirstCommand, Command remove_by_EnPowCommand, Command min_by_distance_travelledCommand, Command filterContainsNameCommand
-    ) {
+                          Command addIfMaxCommand, Command removeGreaterCommand, Command remove_FirstCommand, Command remove_by_EnPowCommand,
+                          Command min_by_distance_travelledCommand, Command filterContainsNameCommand) {
         this.helpCommand = helpCommand;
         this.infoCommand = infoCommand;
         this.showCommand = showCommand;
@@ -255,4 +255,6 @@ public class CommandManager {
     public String toString() {
         return "CommandManager help class";
     }
+
+
 }

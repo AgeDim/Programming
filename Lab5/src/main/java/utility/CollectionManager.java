@@ -1,22 +1,21 @@
 package utility;
 
-import java.time.LocalDateTime;
-import java.util.Comparator;
-import java.util.Stack;
-
 import data.Vehicle;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.Stack;
 
 
 /**
  * Operates the collection itself.
  */
 public class CollectionManager {
+    private final FileManager fileManager;
     private Stack<Vehicle> vehicleCollection = new Stack<>();
     private LocalDateTime lastInitTime;
     private LocalDateTime lastSaveTime;
-    private final FileManager fileManager;
 
 
     public CollectionManager(FileManager fileManager) {
@@ -90,19 +89,6 @@ public class CollectionManager {
         }
         return null;
     }
-
-    /**
-     * @param vehicleToFind A Vehicle who's value will be found.
-     * @return A vehicle by his value or null if vehicle isn't found.
-     */
-    public Vehicle getByValue(Vehicle vehicleToFind) {
-        for (Vehicle vehicle : vehicleCollection) {
-            if (vehicle.equals(vehicleToFind)) return vehicle;
-        }
-        return null;
-    }
-
-
     /**
      * @return Vehicle, who has max EnginePower.
      */
@@ -201,7 +187,6 @@ public class CollectionManager {
     @Override
     public String toString() {
         if (vehicleCollection.isEmpty()) return "Collection is empty!";
-
         StringBuilder info = new StringBuilder();
         for (Vehicle vehicle : vehicleCollection) {
             info.append(vehicle);

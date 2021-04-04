@@ -104,8 +104,10 @@ public class Console {
                 Console.println(App.PS1 + String.join(" ", userCommand));
                 if (userCommand[0].equals("execute_script")) {
                     for (String script : scriptStack) {
-                        if (userCommand[1].equals(script))
+                        if (userCommand[1].equals(script)) {
                             Console.printerror("Script can't be recursive!");
+                            return 1;
+                        }
                     }
                 }
                 commandStatus = launchCommand(userCommand);
@@ -180,6 +182,7 @@ public class Console {
                 else return 2;
             case "filter_by_name":
                 if (!commandManager.filterContainsNameCommand(userCommand[1])) return 1;
+                break;
             default:
                 if (!commandManager.noSuchCommand(userCommand[0])) return 1;
         }

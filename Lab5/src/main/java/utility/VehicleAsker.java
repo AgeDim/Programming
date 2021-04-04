@@ -1,6 +1,8 @@
 package utility;
 
-import data.*;
+import data.Coordinates;
+import data.FuelType;
+import data.VehicleType;
 import exceptions.IncorrectInputInScriptException;
 import exceptions.NotInDeclaredLimitsException;
 import exceptions.WrongInputFormatException;
@@ -12,7 +14,6 @@ import java.util.Scanner;
 /**
  * Class {@code Input} defines methods to work with an input from various sources.
  */
-
 public class VehicleAsker {
     private Scanner userScanner;
     private boolean fileMode;
@@ -185,8 +186,10 @@ public class VehicleAsker {
      */
     public FuelType inputFType() throws WrongInputFormatException {
         Func<FuelType> interfc = (str) -> {
-            if (str.toUpperCase().matches("GASOLINE|ALCOHOL|NUCLEAR|PLASMA|NULL")) {
+            if (str.toUpperCase().matches("GASOLINE|ALCOHOL|NUCLEAR|PLASMA")) {
                 return FuelType.valueOf(str.toUpperCase());
+            } else if (str.toUpperCase().matches("")) {
+                return null;
             } else {
                 throw new WrongInputFormatException();
             }

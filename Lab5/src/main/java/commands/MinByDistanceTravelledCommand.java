@@ -10,7 +10,7 @@ public class MinByDistanceTravelledCommand extends AbstractCommand {
     private final CollectionManager collectionManager;
 
     public MinByDistanceTravelledCommand(CollectionManager collectionManager) {
-        super("minByDistanceTravelled", "input element, value of Distance Travelled is least");
+        super("minByDistanceTravelled", "вывести элемент, значение поля Distance Travelled которого минимально");
         this.collectionManager = collectionManager;
     }
 
@@ -22,11 +22,11 @@ public class MinByDistanceTravelledCommand extends AbstractCommand {
     @Override
     public boolean execute(String argument) {
         if (!argument.isEmpty()) {
-            Console.println("using: '" + getName() + "'");
+            Console.println("использование: '" + getName() + "'");
             return false;
         }
         if (collectionManager.collectionSize() == 0) {
-            Console.printerror("Collection is empty!");
+            Console.printerror("Коллекция пуста!");
             return false;
         } else {
             Console.println(collectionManager.minByDistanceTravelled());

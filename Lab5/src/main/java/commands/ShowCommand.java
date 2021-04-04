@@ -10,7 +10,7 @@ public class ShowCommand extends AbstractCommand {
     private final CollectionManager collectionManager;
 
     public ShowCommand(CollectionManager collectionManager) {
-        super("show", "show the element of collection");
+        super("show", "вывести все элементы коллекции");
         this.collectionManager = collectionManager;
     }
 
@@ -22,7 +22,7 @@ public class ShowCommand extends AbstractCommand {
     @Override
     public boolean execute(String argument) {
         if (!argument.isEmpty()) {
-            Console.println("using: '" + getName() + "'");
+            Console.println("использование: '" + getName() + "'");
             return false;
         } else {
             Console.println(collectionManager);

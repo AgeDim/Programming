@@ -11,7 +11,7 @@ public class RemoveFirstCommand extends AbstractCommand {
     private final CollectionManager collectionManager;
 
     public RemoveFirstCommand(CollectionManager collectionManager) {
-        super("remove_First", "remove first element in collection");
+        super("remove_First", "удалить первый элемент элемент из коллекции");
         this.collectionManager = collectionManager;
     }
 
@@ -23,16 +23,16 @@ public class RemoveFirstCommand extends AbstractCommand {
     @Override
     public boolean execute(String argument) {
         if (!argument.isEmpty()) {
-            Console.println("using: '" + getName() + "'");
+            Console.println("использование: '" + getName() + "'");
             return false;
         }
         if (collectionManager.collectionSize() == 0) {
-            Console.printerror("Collection is empty!");
+            Console.printerror("Коллекция пуста!");
             return false;
         }
         Vehicle vehicleToRemove = collectionManager.getFirst();
         collectionManager.removeFromCollection(vehicleToRemove);
-        Console.println("Vehicle successfully remove!");
+        Console.println("Vehicle успешно удален!");
         return true;
 
     }

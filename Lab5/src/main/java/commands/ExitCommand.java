@@ -8,7 +8,7 @@ import utility.Console;
 public class ExitCommand extends AbstractCommand {
 
     public ExitCommand() {
-        super("exit", "exit from program");
+        super("exit", "завершить программу (без сохранения в файл)");
     }
 
     /**
@@ -19,7 +19,7 @@ public class ExitCommand extends AbstractCommand {
     @Override
     public boolean execute(String argument) {
         if (!argument.isEmpty()) {
-            Console.println("using: '" + getName() + "'");
+            Console.println("использование: '" + getName() + "'");
             return false;
         } else {
             return true;

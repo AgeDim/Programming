@@ -10,7 +10,7 @@ public class ClearCommand extends AbstractCommand {
     private final CollectionManager collectionManager;
 
     public ClearCommand(CollectionManager collectionManager) {
-        super("clear", "clear collection");
+        super("clear", "очистить коллекцию");
         this.collectionManager = collectionManager;
     }
 
@@ -22,11 +22,11 @@ public class ClearCommand extends AbstractCommand {
     @Override
     public boolean execute(String argument) {
         if (!argument.isEmpty()) {
-            Console.println("using: '" + getName() + "'");
+            Console.println("использование: '" + getName() + "'");
             return false;
         } else {
             collectionManager.clearCollection();
-            Console.println("Collection is cleared!");
+            Console.println("коллекция очищена!");
             return true;
         }
 

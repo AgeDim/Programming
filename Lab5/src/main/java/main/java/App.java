@@ -2,16 +2,19 @@ package main.java;
 
 import commands.*;
 import utility.*;
+
 import java.util.Scanner;
 
 /**
  * Main application class. Creates all instances and runs the program.
  *
- * @author Ageev Dmitriy p3131 date now 28.02.2021 21:18
+ * @author Ageev Dmitriy p3131
  */
+
 public class App {
     public static final String PS1 = "$ ";
     public static final String PS2 = "> ";
+
     public static void main(String[] args) {
         try (Scanner userScanner = new Scanner(System.in)) {
             final String envVariable = "LABA";
@@ -35,8 +38,7 @@ public class App {
                         new RemoveFirstCommand(collectionManager),
                         new RemoveByEnPower(collectionManager),
                         new MinByDistanceTravelledCommand(collectionManager),
-                        new FilterContainsNameCommand(collectionManager)
-                );
+                        new FilterContainsNameCommand(collectionManager));
                 Console console = new Console(commandManager, userScanner, vehicleAsker);
                 console.interactiveMode();
             } else {

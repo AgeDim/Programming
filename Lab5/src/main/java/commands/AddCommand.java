@@ -1,7 +1,6 @@
 package commands;
 
 import data.Vehicle;
-import exceptions.NotInDeclaredLimitsException;
 import exceptions.WrongInputFormatException;
 import utility.CollectionManager;
 import utility.Console;
@@ -17,7 +16,7 @@ public class AddCommand extends AbstractCommand {
     private final VehicleAsker vehicleAsker;
 
     public AddCommand(CollectionManager collectionManager, VehicleAsker vehicleAsker) {
-        super("add {element}", "add new element in collection");
+        super("add {element}", "добавить новый элемент в коллекцию");
         this.collectionManager = collectionManager;
         this.vehicleAsker = vehicleAsker;
     }
@@ -30,7 +29,7 @@ public class AddCommand extends AbstractCommand {
     @Override
     public boolean execute(String argument) {
         if (!argument.isEmpty()) {
-            Console.println("using: '" + getName() + "'");
+            Console.println("использование: '" + getName() + "'");
             return false;
         }
         while (true) {
@@ -46,14 +45,10 @@ public class AddCommand extends AbstractCommand {
                         vehicleAsker.inputFType()
                 ));
             } catch (WrongInputFormatException e) {
-                Console.printerror("Incorrect input!");
+                Console.printerror("Неверный ввод!");
             }
-            Console.println("Vehicle successfully added!");
+            Console.println("Vehicle успешно добавлен!");
             return true;
         }
     }
-    /**
-     * Command "Add". Adds element to collection.
-     */
-
 }

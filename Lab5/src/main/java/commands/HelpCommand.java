@@ -8,7 +8,7 @@ import utility.Console;
 public class HelpCommand extends AbstractCommand {
 
     public HelpCommand() {
-        super("help", "note of command");
+        super("help", "вывести справку по доступным командам");
     }
 
     /**
@@ -19,7 +19,7 @@ public class HelpCommand extends AbstractCommand {
     @Override
     public boolean execute(String argument) {
         if (!argument.isEmpty()) {
-            Console.println("using: '" + getName() + "'");
+            Console.println("использование: '" + getName() + "'");
             return false;
         } else {
             return true;

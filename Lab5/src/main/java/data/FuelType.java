@@ -7,8 +7,7 @@ public enum FuelType {
     GASOLINE,
     ALCOHOL,
     NUCLEAR,
-    PLASMA,
-    NULL;
+    PLASMA;
 
 
     /**
