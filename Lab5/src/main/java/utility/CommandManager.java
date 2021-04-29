@@ -66,8 +66,6 @@ public class CommandManager {
         commands.add(min_by_distance_travelledCommand);
         commands.add(filterContainsNameCommand);
     }
-
-
     /**
      * @return List of manager's commands.
      */

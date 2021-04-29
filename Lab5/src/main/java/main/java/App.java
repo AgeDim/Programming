@@ -39,6 +39,7 @@ public class App {
                         new RemoveByEnPower(collectionManager),
                         new MinByDistanceTravelledCommand(collectionManager),
                         new FilterContainsNameCommand(collectionManager));
+
                 Console console = new Console(commandManager, userScanner, vehicleAsker);
                 console.interactiveMode();
             } else {

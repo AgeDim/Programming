@@ -102,20 +102,20 @@ public class Vehicle implements Comparable<Vehicle> {
 
     @Override
     public int compareTo(Vehicle vehicleObj) {
-        return name.compareTo(vehicleObj.getName());
+        return enginePower.compareTo(vehicleObj.getEnginePower());
     }
 
     @Override
     public String toString() {
         String info = "";
         info += "vehicle №" + id;
-        info += " (add " + creationDate.toLocalDate() + " " + creationDate.toLocalTime() + ")";
-        info += "\n name: " + name;
-        info += "\n Coordinates: " + coordinates;
-        info += "\n engine power: " + enginePower;
-        info += "\n travelled distance: " + distanceTravelled;
-        info += "\n type: " + type;
-        info += "\n fuel type: " + fuelType;
+        info += " (добавлен " + creationDate.toLocalDate() + " " + creationDate.toLocalTime() + ")";
+        info += "\n имя: " + name;
+        info += "\n местоположение: " + coordinates;
+        info += "\n мощьность двигателя: " + enginePower;
+        info += "\n пройденное расстояние: " + distanceTravelled;
+        info += "\n тип: " + type;
+        info += "\n тип двигателя: " + fuelType;
         return info;
     }
 

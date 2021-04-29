@@ -89,6 +89,7 @@ public class CollectionManager {
         }
         return null;
     }
+
     /**
      * @return Vehicle, who has max EnginePower.
      */

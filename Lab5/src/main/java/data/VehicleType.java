@@ -3,7 +3,6 @@ package data;
 /**
  * Enumeration with Vehicle category constants.
  */
-
 public enum VehicleType {
     HELICOPTER,
     DRONE,
