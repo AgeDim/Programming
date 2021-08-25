@@ -1,0 +1,6 @@
+request\RequestAcceptor.class
+request\Serialization.class
+servercommands\ValidateIdCommand.class
+request\SerializationForClient.class
+request\AnswerSender.class
+request\SerializationFromClient.class
