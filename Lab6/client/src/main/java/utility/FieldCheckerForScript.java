@@ -6,8 +6,6 @@ import exceptions.IncorrectValueException;
 import exceptions.NullFieldException;
 import exceptions.WrongInputFormatException;
 
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 
@@ -18,7 +16,7 @@ public class FieldCheckerForScript {
     }
 
     public <T> T readAndCheckField(String field, String FieldName, String error, FieldCheckerHelp<T> rule) throws DateTimeParseException, NullFieldException, IncorrectValueException, WrongInputFormatException {
-        T temp = null;
+        T temp;
         temp = rule.check(field);
         return temp;
     }
@@ -36,7 +34,7 @@ public class FieldCheckerForScript {
 
     public Integer readAndCheckX(String coordinateX) throws NumberFormatException, IncorrectValueException, NullFieldException, WrongInputFormatException {
         FieldCheckerHelp<Integer> tempInterface = str -> {
-            Integer result = null;
+            int result;
             if (str != null) {
                 result = Integer.parseInt(str);
                 if (result > 768) {
@@ -50,7 +48,7 @@ public class FieldCheckerForScript {
 
     public Integer readAndCheckY(String coordinateY) throws NumberFormatException, IncorrectValueException, NullFieldException, WrongInputFormatException {
         FieldCheckerHelp<Integer> tempInterface = str -> {
-            Integer result = null;
+            int result;
             if (str != null) {
                 result = Integer.parseInt(str);
             } else throw new NullFieldException("coordinate Y");
@@ -61,7 +59,7 @@ public class FieldCheckerForScript {
 
     public Integer readAndCheckEnginePower(String enginePower) throws NumberFormatException, IncorrectValueException, NullFieldException, WrongInputFormatException {
         FieldCheckerHelp<Integer> tempInterface = str -> {
-            Integer result;
+            int result;
             if (str != null) {
                 result = Integer.parseInt(str);
                 if (result <= 0) {

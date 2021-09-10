@@ -114,7 +114,7 @@ public class FieldCheckerForConsole {
      *
      * @return type of vehicle.
      */
-    public VehicleType readAndCheckVType() throws WrongInputFormatException {
+    public VehicleType readAndCheckVType(){
         FieldCheckerHelp<VehicleType> interfc = (str) -> {
             if(str == null){throw new WrongInputFormatException();}
             if (str.toUpperCase().matches("HELICOPTER|DRONE|CHOPPER|SPACESHIP")) {
@@ -132,7 +132,7 @@ public class FieldCheckerForConsole {
      *
      * @return fuel type of vehicle.
      */
-    public FuelType readAndCheckFType() throws WrongInputFormatException {
+    public FuelType readAndCheckFType(){
         FieldCheckerHelp<FuelType> interfc = (str) -> {
             if (str == null)  {
                 return null;

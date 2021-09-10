@@ -66,7 +66,7 @@ public class VehicleFactory {
      * @throws NullFieldException      if field is null, when is shouldn't be null
      * @throws IncorrectValueException - if value of the field contains wrong data, which is not allowed in this field
      */
-    public Vehicle createVehicleWithIdAndCreationDate(Integer _id, String name, Coordinates coordinates, LocalDateTime creationDate, Integer enginePower, int distanceTravelled, VehicleType vehicleType, FuelType type) throws NullFieldException, IncorrectValueException, IncorrectArgumentException {
+    public Vehicle createVehicleWithIdAndCreationDate(Integer _id, String name, Coordinates coordinates, LocalDateTime creationDate, Integer enginePower, int distanceTravelled, VehicleType vehicleType, FuelType type) throws NullFieldException, IncorrectArgumentException {
         if (name == null || name.length() == 0) {
             throw new IncorrectArgumentException();
         }
