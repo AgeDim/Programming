@@ -6,6 +6,7 @@ import data.VehicleType;
 
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.Stack;
 
 
 public class CollectionValidator {
@@ -15,7 +16,7 @@ public class CollectionValidator {
         this.collectionManager = collectionManager;
     }
 
-    public boolean validateObject(LinkedList<Vehicle> collection, Vehicle vehicle) {
+    public boolean validateObject(Stack<Vehicle> collection, Vehicle vehicle) {
         boolean tempName;
         boolean tempCoordinates;
         boolean tempEngPower;
@@ -24,7 +25,7 @@ public class CollectionValidator {
         boolean tempVType;
         if (!collection.isEmpty()) {
             for (Vehicle v : collection) {
-                if (v.getId() == vehicle.getId()) {
+                if (v.getId().equals(vehicle.getId())) {
                     return false;
                 }
             }

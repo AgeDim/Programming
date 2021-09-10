@@ -75,7 +75,7 @@ public class CollectionManager {
     }
 
     public void removeById(Integer id) {
-        vehicleCollection.removeIf(vehicle -> vehicle.getId() == id);
+        vehicleCollection.removeIf(vehicle -> vehicle.getId().equals(id));
     }
 
     public boolean removeGreater(Vehicle vehicleToCompare) {
@@ -88,7 +88,7 @@ public class CollectionManager {
 
     public void update(Integer id, Vehicle vehicle) {
         vehicleCollection.forEach(vehicle1 -> {
-            if (vehicle1.getId() == id) {
+            if (vehicle1.getId().equals(id)) {
                 vehicle1.setName(vehicle.getName());
                 vehicle1.setCoordinates(vehicle.getCoordinates());
                 vehicle1.setEnginePower(vehicle.getEnginePower());

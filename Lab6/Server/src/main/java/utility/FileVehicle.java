@@ -38,7 +38,7 @@ public class FileVehicle {
         Parser pars = new Parser();
         ArrayList<ArrayList<String>> fileLines;
         try {
-            fileLines = pars.parseCSV(new FileReader(new File(System.getenv(envVariable))));
+            fileLines = pars.parseCSV(new FileReader(System.getenv(envVariable)));
         } catch (FileNotFoundException e) {
             System.out.println("File not found! Try again");
             return new Stack<Vehicle>();
