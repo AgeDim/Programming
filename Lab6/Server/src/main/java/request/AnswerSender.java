@@ -6,8 +6,6 @@ import org.slf4j.Logger;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
 import java.net.SocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
@@ -44,7 +42,7 @@ public class AnswerSender {
             objectOutputStream.writeObject(answer);
             objectOutputStream.flush();
             ByteBuffer buffer = ByteBuffer.wrap(byteArrayOutputStream.toByteArray());
-            datagramChannel.send(buffer,socketAddress);
+            datagramChannel.send(buffer, socketAddress);
             logger.info("Answer has been sent to " + socketAddress);
         } catch (IOException exception) {
             logger.info("Failed sending answer." + exception.getMessage() + exception.getCause());
