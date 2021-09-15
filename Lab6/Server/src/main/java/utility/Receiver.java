@@ -78,7 +78,7 @@ public class Receiver {
 
     public void minByDistanceTravelled() {
         if (collectionManager.collectionSize() != 0) {
-            Vehicle vehicleToSend = Collections.min(collectionManager.getCollection(), Comparator.comparingInt(Vehicle::getDistanceTravelled));
+            Vehicle vehicleToSend = collectionManager.minByDistanceTravelled();
             answerSender.addToAnswer(true, "", null, vehicleToSend);
         }else answerSender.addToAnswer(false, "Collection is empty!", null, null);
         logger.info("Result of command \"min_by_distance_travelled\" has been sent to client.");
