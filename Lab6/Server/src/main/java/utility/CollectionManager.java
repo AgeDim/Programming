@@ -29,6 +29,12 @@ public class CollectionManager {
         vehicleCollection.add(vehicle);
     }
 
+    public Vehicle getVehicle() {
+        Vehicle vehicle;
+        vehicle = vehicleCollection.peek();
+        return vehicle;
+    }
+
     public Vehicle getFirst() {
         if (vehicleCollection.isEmpty()) return null;
         return vehicleCollection.firstElement();
@@ -54,24 +60,12 @@ public class CollectionManager {
      * @return compare name with string.
      */
 
-    public String vehicleFilteredInfo(String name) {
-        StringBuilder info = new StringBuilder();
-        for (Vehicle vehicle : vehicleCollection) {
-            if (vehicle.getName().contains(name)) {
-                info.append(vehicle).append("\n\n");
-            }
-        }
-        return info.toString().trim();
+    public Stack<Vehicle> vehicleFilteredInfo(String name) {
+        return vehicleCollection.stream().filter(vehicle -> vehicle.getName().contains(name)).collect(Stack::new, Stack::add, Stack::addAll);
     }
 
     public Stack<Vehicle> getByEnginePower(Integer enginePower) {
-        Stack<Vehicle> substr = new Stack<>();
-        for (Vehicle vehicle : vehicleCollection) {
-            if (vehicle.getEnginePower().equals(enginePower)) {
-                substr.push(vehicle);
-            }
-        }
-        return substr;
+        return vehicleCollection.stream().filter(vehicle -> vehicle.getEnginePower().equals(enginePower)).collect(Stack::new, Stack::add, Stack::addAll);
     }
 
     public void removeById(Integer id) {
@@ -84,6 +78,14 @@ public class CollectionManager {
 
     public Stack<Vehicle> show() {
         return vehicleCollection.stream().sorted(Comparator.comparing(Vehicle::getName)).collect(Stack::new, Stack::add, Stack::addAll);
+    }
+
+    public Vehicle minByDistanceTravelled(Stack<Vehicle> vehicleStack) {
+        Vehicle vehicle = vehicleCollection.firstElement();
+        for (Vehicle vehicle1 : vehicleCollection) {
+            if (vehicle.getDistanceTravelled() > vehicle1.getDistanceTravelled()) vehicle = vehicle1;
+        }
+        return vehicle;
     }
 
     public void update(Integer id, Vehicle vehicle) {
@@ -154,15 +156,6 @@ public class CollectionManager {
 
     public int collectionSize() {
         return vehicleCollection.size();
-    }
-
-    /**
-     * Load collection from indicated file
-     *
-     * @param collectionFromFile external collection of vehicle instances
-     */
-    public void load(Stack<Vehicle> collectionFromFile) {
-        vehicleCollection.addAll(collectionFromFile);
     }
 
     public Integer getLastId() {
