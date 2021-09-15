@@ -80,7 +80,7 @@ public class CollectionManager {
         return vehicleCollection.stream().sorted(Comparator.comparing(Vehicle::getName)).collect(Stack::new, Stack::add, Stack::addAll);
     }
 
-    public Vehicle minByDistanceTravelled(Stack<Vehicle> vehicleStack) {
+    public Vehicle minByDistanceTravelled() {
         Vehicle vehicle = vehicleCollection.firstElement();
         for (Vehicle vehicle1 : vehicleCollection) {
             if (vehicle.getDistanceTravelled() > vehicle1.getDistanceTravelled()) vehicle = vehicle1;
