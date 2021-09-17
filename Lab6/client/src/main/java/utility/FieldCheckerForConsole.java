@@ -89,7 +89,7 @@ public class FieldCheckerForConsole {
             }
             return res;
         };
-        return readAndCheckField("Input engine power", "Wrong Power Format! Try again: ", interfc);
+        return readAndCheckField("Input engine power:", "Wrong Power Format! Try again: ", interfc);
     }
 
     /**
