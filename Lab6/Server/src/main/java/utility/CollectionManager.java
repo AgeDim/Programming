@@ -77,7 +77,7 @@ public class CollectionManager {
     }
 
     public Stack<Vehicle> show() {
-        return vehicleCollection.stream().sorted(Comparator.comparing(Vehicle::getName)).collect(Stack::new, Stack::add, Stack::addAll);
+        return vehicleCollection.stream().sorted(Comparator.comparing(Vehicle::getCoordinates)).collect(Stack::new, Stack::add, Stack::addAll);
     }
 
     public void update(Integer id, Vehicle vehicle) {
