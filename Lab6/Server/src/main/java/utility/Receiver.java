@@ -8,6 +8,7 @@ import request.RequestAcceptor;
 
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Stack;
 
 
 public class Receiver {
@@ -51,8 +52,8 @@ public class Receiver {
         if (collectionManager.collectionSize() == 0 || vehicle.compareTo(collectionManager.GetMax()) > 0) {
             collectionManager.add(vehicle);
             answerSender.addToAnswer(true, "Vehicle was added to the collection.", null, null);
-        }else {
-         answerSender.addToAnswer(true,"it is not the biggest Vehicle",null,null);
+        } else {
+            answerSender.addToAnswer(true, "it is not the biggest Vehicle", null, null);
         }
         logger.info("Result of command \"add_if_max\" has been sent to client.");
         answerSender.sendAnswer();
@@ -66,11 +67,12 @@ public class Receiver {
     }
 
     public void filterContainsName(String arg) {
-        String answer = collectionManager.vehicleFilteredInfo(arg);
-        if (answer == null || answer.equals("")) {
+        Stack<Vehicle> vehicleStack = collectionManager.vehicleFilteredInfo(arg);
+        if (vehicleStack.isEmpty()) {
             answerSender.addToAnswer(false, "Vehicle's not found", null, null);
         } else {
-            answerSender.addToAnswer(true, answer, null, null);}
+            answerSender.addToAnswer(true, "", null, vehicleStack);
+        }
 
         logger.info("Result of command \"filter_by_name\" has been sent to client.");
         answerSender.sendAnswer();
@@ -78,10 +80,10 @@ public class Receiver {
 
     public void minByDistanceTravelled() {
         if (collectionManager.collectionSize() != 0) {
-            Vehicle vehicleToSend = collectionManager.minByDistanceTravelled();
+            Stack<Vehicle> vehicleToSend = collectionManager.minByDistanceTravelled();
             answerSender.addToAnswer(true, "", null, vehicleToSend);
-        }else answerSender.addToAnswer(false, "Collection is empty!", null, null);
-        logger.info("Result of command \"min_by_distance_travelled\" has been sent to client.");
+        } else answerSender.addToAnswer(false, "Collection is empty!", null, null);
+        logger.info("Result of command \"min_by_distance\" has been sent to client.");
         answerSender.sendAnswer();
     }
 
@@ -133,7 +135,7 @@ public class Receiver {
 
     public void show() {
         if (collectionManager.collectionSize() == 0) {
-            answerSender.addToAnswer(true,"Collection is empty!",null,null);
+            answerSender.addToAnswer(true, "Collection is empty!", null, null);
         } else {
             answerSender.addToAnswer(true, "", null, collectionManager.show());
         }

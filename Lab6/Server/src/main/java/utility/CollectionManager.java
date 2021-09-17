@@ -80,14 +80,6 @@ public class CollectionManager {
         return vehicleCollection.stream().sorted(Comparator.comparing(Vehicle::getName)).collect(Stack::new, Stack::add, Stack::addAll);
     }
 
-    public Vehicle minByDistanceTravelled() {
-        Vehicle vehicle = vehicleCollection.firstElement();
-        for (Vehicle vehicle1 : vehicleCollection) {
-            if (vehicle.getDistanceTravelled() > vehicle1.getDistanceTravelled()) vehicle = vehicle1;
-        }
-        return vehicle;
-    }
-
     public void update(Integer id, Vehicle vehicle) {
         vehicleCollection.forEach(vehicle1 -> {
             if (vehicle1.getId().equals(id)) {
@@ -95,8 +87,8 @@ public class CollectionManager {
                 vehicle1.setCoordinates(vehicle.getCoordinates());
                 vehicle1.setEnginePower(vehicle.getEnginePower());
                 vehicle1.setDistanceTravelled(vehicle.getDistanceTravelled());
-                vehicle1.setType(vehicle.getFuelType());
-                vehicle1.setFuelType(vehicle.getType());
+                vehicle1.setFuelType(vehicle.getFuelType());
+                vehicle1.setType(vehicle.getType());
             }
         });
     }
@@ -133,6 +125,12 @@ public class CollectionManager {
         return Type + Init + Size + State;
     }
 
+    public Stack<Vehicle> minByDistanceTravelled() {
+        Stack<Vehicle> stack = new Stack<>();
+        stack.push(vehicleCollection.stream().min(Comparator.comparing(Vehicle::getDistanceTravelled)).get());
+        return stack;
+    }
+
     public Vehicle GetMax() {
         Vehicle maxVehicle = getFirst();
         for (Vehicle vehicle : vehicleCollection) {
@@ -150,8 +148,8 @@ public class CollectionManager {
         return vehicleCollection;
     }
 
-    public void setCollection(Stack<Vehicle> collection) {
-        this.vehicleCollection = collection;
+    public void loadCollection(String envVariable) {
+        vehicleCollection = FileVehicle.ReadFile(envVariable);
     }
 
     public int collectionSize() {

@@ -33,12 +33,12 @@ public class FileVehicle {
      * @throws IllegalArgumentException if some methods have incorrect argument
      * @throws NullPointerException     if some of the fields is null
      */
-    public Stack<Vehicle> ReadFile() {
+    public static Stack<Vehicle> ReadFile(String envVariable) {
         Stack<Vehicle> vehicle1 = new Stack<>();
         Parser pars = new Parser();
         ArrayList<ArrayList<String>> fileLines;
         try {
-            fileLines = pars.parseCSV(new FileReader(System.getenv(envVariable)));
+            fileLines = pars.parseCSV(new FileReader(envVariable));
         } catch (FileNotFoundException e) {
             System.out.println("File not found! Try again");
             return new Stack<Vehicle>();
@@ -85,7 +85,7 @@ public class FileVehicle {
 
     public void writeDocument(Collection<Vehicle> collection) {
         String output;
-        try (PrintWriter pw = new PrintWriter(new FileOutputStream(System.getenv(envVariable)))) {
+        try (PrintWriter pw = new PrintWriter(new FileOutputStream(envVariable))) {
             for (Vehicle vehicle : collection) {
                 output = "\"" + vehicle.getId() + "\",\"" + vehicle.getName().replace("\"", "\"\"") + "\",\"" + vehicle.getCoordinates().getX()
                         + "\",\"" + vehicle.getCoordinates().getY() + "\",\"" + vehicle.getCreationDate() + "\",\"" +

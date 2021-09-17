@@ -34,7 +34,7 @@ public class Invoker {
         command.put("remove_greater", new RemoveGreaterCommand(receiver));
         command.put("remove_first", new RemoveFirstCommand(receiver));
         command.put("remove_by_engine_power", new RemoveByEnPowerCommand(receiver));
-        command.put("min_by_distance_travelled", new MinByDistanceTravelledCommand(receiver));
+        command.put("min_by_distance", new MinByDistanceTravelledCommand(receiver));
         command.put("filter_by_name", new FilterContainsNameCommand(receiver));
         command.put("validate_id", new ValidateIdCommand(receiver));
     }

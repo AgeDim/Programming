@@ -20,7 +20,7 @@ public class App {
         int port = 9898;
         try {
             if (args.length == 1) {
-                collectionManager.setCollection(fileVehicle.ReadFile());
+                collectionManager.loadCollection(envVariable);
                 port = Integer.parseInt(args[0]);
             } else {
                 System.out.println("Incorrect command line arguments. Please, follow the format: \"file_path port\".");

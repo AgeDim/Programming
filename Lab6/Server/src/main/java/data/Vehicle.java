@@ -2,14 +2,12 @@ package data;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Stack;
 
 /**
  * info about Vehicle.
  */
 
-
-public class Vehicle extends Stack<Vehicle> implements Comparable<Vehicle>, Serializable {
+public class Vehicle implements Comparable<Vehicle>, Serializable {
     private static final long serialVersionUID = -1934063929652699131L;
     private Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
@@ -103,27 +101,6 @@ public class Vehicle extends Stack<Vehicle> implements Comparable<Vehicle>, Seri
     public LocalDateTime getCreationDate() {
         return creationDate;
     }
-    public void setId(Integer id){
-        this.id = id;
-    }
-    public void setName(String name){
-        this.name = name;
-    }
-    public void setCoordinates(Coordinates coordinates){
-        this.coordinates = coordinates;
-    }
-    public void setEnginePower(Integer enginePower){
-        this.enginePower = enginePower;
-    }
-    public void setDistanceTravelled(Integer distanceTravelled){
-        this.distanceTravelled = distanceTravelled;
-    }
-    public void setType(FuelType fuelType){
-        this.fuelType = fuelType;
-    }
-    public void setFuelType(VehicleType type){
-        this.type = type;
-    }
 
     @Override
     public int compareTo(Vehicle vehicleObj) {
@@ -160,5 +137,33 @@ public class Vehicle extends Stack<Vehicle> implements Comparable<Vehicle>, Seri
                     distanceTravelled == vehicleObj.getDistanceTravelled();
         }
         return false;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCoordinates(Coordinates coordinates) {
+        this.coordinates = coordinates;
+    }
+
+    public void setEnginePower(Integer enginePower) {
+        this.enginePower = enginePower;
+    }
+
+    public void setDistanceTravelled(int distanceTravelled) {
+        this.distanceTravelled = distanceTravelled;
+    }
+
+    public void setType(VehicleType type) {
+        this.type = type;
+    }
+
+    public void setFuelType(FuelType fuelType) {
+        this.fuelType = fuelType;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
