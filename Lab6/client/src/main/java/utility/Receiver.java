@@ -12,7 +12,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.SocketAddress;
 import java.nio.channels.DatagramChannel;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -62,7 +64,7 @@ public class Receiver {
     }
 
     public void minByDisTravelled() {
-        requestSender.sendRequest(new SerializationFromClient("min_by_distance_travelled", null, null));
+        requestSender.sendRequest(new SerializationFromClient("min_by_distance", null, null));
     }
 
     public void filterContainsName(String arg) {
@@ -156,7 +158,7 @@ public class Receiver {
                         }
                         if (command.equals("execute_script")) {
                             invoker.addBufferedReader(bufferedReader);
-                        }
+                            }
                         if (invoker.getFilePaths().contains(arg)) {
                             System.out.println("Recursion has occurred. Please, correct your script.");
                             invoker.deletePath(path);

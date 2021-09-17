@@ -32,6 +32,7 @@ public class Main {
         try {
             SocketAddress socketAddress = new InetSocketAddress(serverAddress, port);
             DatagramChannel datagramChannel = DatagramChannel.open();
+            datagramChannel.configureBlocking(false);
             datagramChannel.connect(socketAddress);
             System.out.println(datagramChannel.getLocalAddress());
             RequestSender requestSender = new RequestSender(datagramChannel, socketAddress);

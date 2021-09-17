@@ -43,7 +43,7 @@ public class Invoker {
         command.put("remove_greater", new RemoveGreaterCommand(datagramChannel, socketAddress, console, invoker));
         command.put("remove_first", new RemoveFirstCommand(datagramChannel, socketAddress, console, invoker));
         command.put("remove_by_engine_power", new RemoveByEnPower(datagramChannel, socketAddress, console, invoker));
-        command.put("min_by_distance_travelled", new MinByDistanceTravelledCommand(datagramChannel, socketAddress, console, invoker));
+        command.put("min_by_distance", new MinByDistanceTravelledCommand(datagramChannel, socketAddress, console, invoker));
         command.put("filter_by_name", new FilterContainsNameCommand(datagramChannel, socketAddress, console, invoker));
         command.put("execute_script", new ExecuteScriptCommand(datagramChannel, socketAddress, console, invoker));
         command.put("help", new HelpCommand(command, datagramChannel, socketAddress, console, invoker));

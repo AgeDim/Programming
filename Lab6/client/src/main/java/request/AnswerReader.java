@@ -7,7 +7,6 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.SocketAddress;
-import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
 
@@ -32,7 +31,7 @@ public class AnswerReader {
                 try {
                     datagramChannel.receive(byteBuffer);
                     if (byteBuffer.position() != 0) {
-                        ((Buffer) byteBuffer).flip();
+                        (byteBuffer).flip();
                         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteBuffer.array());
                         ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
                         answer = objectInputStream.readObject();
@@ -61,7 +60,7 @@ public class AnswerReader {
                     }
                 }
                 setAnswerAccepted(true);
-                ((Buffer) byteBuffer).clear();
+                (byteBuffer).clear();
                 break;
             } else {
                 setAnswerAccepted(true);
@@ -72,7 +71,7 @@ public class AnswerReader {
 
     public boolean readValidation() throws ServerIsNotAvailableException {
         long time = System.currentTimeMillis();
-        Object answer = null;
+        Object answer;
         ByteBuffer byteBuffer = ByteBuffer.allocate(4096);
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteBuffer.array());
         while (true) {
@@ -80,7 +79,7 @@ public class AnswerReader {
                 try {
                     datagramChannel.receive(byteBuffer);
                     if (byteBuffer.position() != 0) {
-                        ((Buffer) byteBuffer).flip();
+                        (byteBuffer).flip();
                         ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
                         answer = objectInputStream.readObject();
                     } else continue;
@@ -92,14 +91,14 @@ public class AnswerReader {
                     e.printStackTrace();
                     return false;
                 }
-                SerializationForClient answerChanged = (SerializationForClient) answer;;
+                SerializationForClient answerChanged = (SerializationForClient) answer;
                 if (answerChanged.getStatus()) {
-                    ((Buffer)byteBuffer).clear();
+                    (byteBuffer).clear();
                     System.out.println("Validation was passed good.");
                     setValidationAccepted(true);
                     return true;
                 } else {
-                    ((Buffer)byteBuffer).clear();
+                    (byteBuffer).clear();
                     System.out.println("Validation wasn't passed.");
                     setValidationAccepted(true);
                     return false;
@@ -114,6 +113,7 @@ public class AnswerReader {
     public void setAnswerAccepted(boolean answerAccepted) {
         this.answerAccepted = answerAccepted;
     }
+
     public boolean isAnswerAccepted() {
         return answerAccepted;
     }
