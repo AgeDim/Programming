@@ -94,8 +94,8 @@ public class VehicleFactory {
     public Vehicle getVehicleFromConsole() throws IncorrectValueException, NullFieldException, IncorrectArgumentException, WrongInputFormatException {
         String name = null;
         LocalDateTime creationDate = null;
-        Integer x = null;
-        Integer y = null;
+        Float x = null;
+        Float y = null;
         Integer enginePower = null;
         Integer distanceTravelled = null;
         VehicleType vehicleType = null;
@@ -130,8 +130,8 @@ public class VehicleFactory {
     public Vehicle getVehicleFromScript(String[] parameters) throws IncorrectArgumentException, WrongInputFormatException {
         String name;
         LocalDateTime creationDate = LocalDateTime.now();
-        Integer x;
-        Integer y;
+        Float x;
+        Float y;
         Integer enginePower;
         int distanceTravelled;
         VehicleType vehicleType;
@@ -145,7 +145,7 @@ public class VehicleFactory {
             return null;
         }
         try {
-            x = fieldCheckerForScript.readAndCheckX(parameters[1]);
+            x = Float.valueOf(fieldCheckerForScript.readAndCheckX(parameters[1]));
         } catch (IncorrectValueException | NullFieldException e) {
             System.out.println(e.getMessage());
             return null;
@@ -154,7 +154,7 @@ public class VehicleFactory {
             return null;
         }
         try {
-            y = fieldCheckerForScript.readAndCheckY(parameters[2]);
+            y = Float.valueOf(fieldCheckerForScript.readAndCheckY(parameters[2]));
         } catch (IncorrectValueException | NullFieldException e) {
             System.out.println(e.getMessage());
             return null;

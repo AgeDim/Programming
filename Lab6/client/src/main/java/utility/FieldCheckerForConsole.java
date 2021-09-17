@@ -49,9 +49,9 @@ public class FieldCheckerForConsole {
      *
      * @return vehicle's X coordinate.
      */
-    public Integer readAndCheckX() {
-        FieldCheckerHelp<Integer> interfc = (str) -> {
-            int res = Integer.parseInt(str);
+    public Float readAndCheckX() {
+        FieldCheckerHelp<Float> interfc = (str) -> {
+            float res = Integer.parseInt(str);
             if (res > 252)
                 throw new WrongInputFormatException();
             return res;
@@ -64,9 +64,9 @@ public class FieldCheckerForConsole {
      *
      * @return vehicle's Y coordinate.
      */
-    public Integer readAndCheckY() {
-        FieldCheckerHelp<Integer> interfc = (str) -> {
-            int res = Integer.parseInt(str);
+    public Float readAndCheckY() {
+        FieldCheckerHelp<Float> interfc = (str) -> {
+            float res = Integer.parseInt(str);
             if (res > 420) {
                 throw new WrongInputFormatException();
             }
