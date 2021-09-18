@@ -31,7 +31,7 @@ public class AnswerReader {
                 try {
                     datagramChannel.receive(byteBuffer);
                     if (byteBuffer.position() != 0) {
-                        (byteBuffer).flip();
+                        byteBuffer.flip();
                         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteBuffer.array());
                         ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
                         answer = objectInputStream.readObject();
@@ -79,7 +79,7 @@ public class AnswerReader {
                 try {
                     datagramChannel.receive(byteBuffer);
                     if (byteBuffer.position() != 0) {
-                        (byteBuffer).flip();
+                        byteBuffer.flip();
                         ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
                         answer = objectInputStream.readObject();
                     } else continue;
@@ -93,12 +93,12 @@ public class AnswerReader {
                 }
                 SerializationForClient answerChanged = (SerializationForClient) answer;
                 if (answerChanged.getStatus()) {
-                    (byteBuffer).clear();
+                    byteBuffer.clear();
                     System.out.println("Validation was passed good.");
                     setValidationAccepted(true);
                     return true;
                 } else {
-                    (byteBuffer).clear();
+                    byteBuffer.clear();
                     System.out.println("Validation wasn't passed.");
                     setValidationAccepted(true);
                     return false;
