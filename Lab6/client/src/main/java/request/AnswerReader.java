@@ -60,7 +60,7 @@ public class AnswerReader {
                     }
                 }
                 setAnswerAccepted(true);
-                (byteBuffer).clear();
+                byteBuffer.clear();
                 break;
             } else {
                 setAnswerAccepted(true);
