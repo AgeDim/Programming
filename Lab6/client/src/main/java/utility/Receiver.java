@@ -166,7 +166,7 @@ public class Receiver {
                             continue;
                         }
                         if (command.equals("add") || command.equals("update") || command.equals("remove_greater") || command.equals("add_if_max")) {
-                            for (int i = 0; i < 9; i++) {
+                            for (int i = 0; i < 7; i++) {
                                 line = bufferedReader.readLine();
                                 parameters[i] = line;
                             }
