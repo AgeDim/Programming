@@ -3,7 +3,9 @@
 // Validate functions
 function validateX($xVal)
 {
-    return isset($xVal);
+    if(5>$xVal & $xVal<5){
+        return true;
+    } else return false;
 }
 
 function validateY($yVal)
@@ -54,9 +56,9 @@ function checkHit($xVal, $yVal, $rVal)
 }
 
 // Main logic
-$xVal = $_GET['xval'];
-$yVal = $_GET['yval'];
-$rVal = $_GET['rval'];
+$xVal = $_GET['x'];
+$yVal = $_GET['y'];
+$rVal = $_GET['r'];
 
 
 $timezoneOffset = $_GET['timezone'];

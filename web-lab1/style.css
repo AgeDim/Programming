@@ -86,7 +86,7 @@
       display: inline-block;
       position: relative;
       margin: 0 1% 5%;
-      font-size: 14px;
+      font-size: 16px;
     }
 
     .center-labeled label {
@@ -96,7 +96,7 @@
     }
 
     .center-labeled .float-labeled {
-      left: 0;
+      left: 30%;
     }
 
     .center-labeled .add-labeled {

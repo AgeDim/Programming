@@ -1,10 +1,28 @@
+$('#RESET').on('click', reset);
+
+function chooseX(element) {
+    x = element.value;
+    [...document.getElementsByClassName("x-radio")].forEach(function (btn) {
+        btn.style.transform = "";
+    });
+    element.style.transform = "scale(1.3)";
+}
+
+let x;
+
+function reset() {
+    [...document.getElementsByClassName("x-radio")].forEach(function (btn) {
+        btn.style.transform = "";
+    });
+}
+
 $(function () {
     function isNumeric(n) {
         return !isNaN(parseFloat(n)) && isFinite(n);
     }
 
     function validateX() {
-        if ($('.x-radio').is(':checked')) {
+        if (x) {
             $('.xbox-label').removeClass('box-error');
             return true;
         } else {
@@ -30,12 +48,12 @@ $(function () {
     }
 
     function validateR() {
-        if ($('.r-checkbox').is(':checked')) {
-            $('.rbox-label').removeClass('box-error');
-            return true;
-        } else {
+        if ($('.r-checkbox') === "Select R coordinate") {
             $('.rbox-label').addClass('box-error');
             return false;
+        } else {
+            $('.rbox-label').removeClass('box-error');
+            return true;
         }
     }
 
@@ -63,7 +81,7 @@ $(function () {
             url: 'php/main.php',
             method: `get`,
             dataType: "json",
-            data: $(this).serialize() + '&timezone=' + new Date().getTimezoneOffset(),
+            data: 'xval=' + x + '&' + $(this).serialize() + '&timezone=' + new Date().getTimezoneOffset(),
             beforeSend: function () {
                 $('.button').attr('disabled', 'disabled');
             },
@@ -71,7 +89,7 @@ $(function () {
                 $('.button').attr('disabled', false);
                 if (data.validate) {
                     newRow = '<tr>';
-                    newRow += '<td>' + data.xval + '</td>';
+                    newRow += '<td>' + x + '</td>';
                     newRow += '<td>' + data.yval + '</td>';
                     newRow += '<td>' + data.rval + '</td>';
                     newRow += '<td>' + data.curtime + '</td>';
