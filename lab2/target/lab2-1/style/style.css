@@ -1,0 +1,257 @@
+
+body {
+    font-size: 16px;
+    font-family: "beer", serif;
+    background: #74FFA0;
+    background: -webkit-linear-gradient(top left, #74FFA0, #D68CF4);
+    background: -moz-linear-gradient(top left, #74FFA0, #D68CF4);
+    background: linear-gradient(to bottom right, #74FFA0, #D68CF4);
+    margin-top: 0;
+    height: 100vh;
+}
+
+#main-grid {
+    width: 95%;
+    margin: auto;
+    border-spacing: 1em;
+}
+
+#table-plate {
+    width: 65%;
+}
+
+#header-plate {
+    font-family: "beer", serif;
+    height: 1.5%;
+    padding: 15px;
+    font-size: 20px;
+    color: #ffffff;
+    background: #F56A91;
+    background: -webkit-linear-gradient(top left, #F56A91, #294AE0);
+    background: -moz-linear-gradient(top left, #F56A91, #294AE0);
+    background: linear-gradient(to bottom right, #F56A91, #294AE0);
+    border-radius: 20px;
+}
+
+.content-plate {
+    padding: 0 0 20px;
+    vertical-align: top;
+    background-color: #ffffff;
+}
+
+
+.plate-top {
+    display: inline-block;
+    width: 100%;
+    margin: 0;
+    margin-bottom: 10px;
+    padding: 0em 0;
+    text-align: center;
+    font-family: "beer", serif;
+    background: #F56A91;
+    background: -webkit-linear-gradient(top left, #F56A91, #294AE0);
+    background: -moz-linear-gradient(top left, #F56A91, #294AE0);
+    background: linear-gradient(to bottom right, #F56A91, #294AE0);
+}
+
+.plate-top-title {
+    font-family: "beer", serif;
+    font-size: 16px;
+    font-weight: normal;
+    height: 16px;
+    background: #F56A91;
+    background: -webkit-linear-gradient(top left, #F56A91, #294AE0);
+    background: -moz-linear-gradient(top left, #F56A91, #294AE0);
+    background: linear-gradient(to bottom right, #F56A91, #294AE0);
+}
+
+*{
+    font-family: "beer", serif;
+}
+
+.image-container {
+    text-align: center;
+    margin-top: 10px;
+}
+
+#input-grid {
+    width: 95%;
+    margin: auto;
+    text-align: center;
+}
+
+.input-grid-label {
+    width: 12%;
+    font-weight: bold;
+}
+
+#y-textinput {
+    width: 75%;
+    height: 20px;
+    margin: 2% 0;
+    border-radius: 20px;
+    border-color: rgba(134, 255, 190, 1.0);
+}
+
+.text-error {
+    border: 2px solid #ff0000;
+}
+
+.box-error {
+    color: #ff0000;
+}
+
+.text-error::placeholder {
+    color: #ff0000;
+}
+
+.form-subtext {
+    padding-bottom: 2%;
+    font-size: 14px;
+}
+
+
+.center-labeled {
+    display: inline-block;
+    position: relative;
+    margin: 0px 5px 0 5px;
+    font-size: 16px;
+}
+
+.center-labeled label {
+    position: relative;
+    left: 6px;
+}
+
+.center-labeled .float-labeled {
+    left: 30%;
+}
+
+.center-labeled .add-labeled {
+    left: 7px;
+}
+
+.buttons {
+    margin-top: 3%;
+
+}
+
+.button:hover {
+    box-shadow:0 0 50px lightgreen;
+}
+
+.buttons::before {
+    content: "";
+    display: block;
+    height: 2px;
+    width: 60px;
+    margin: 0 auto 4%;
+}
+
+.button {
+    height: 27px;
+    width: 70px;
+    font-family: "beer", serif;
+    color: BLACK;
+    background: rgba(134, 255, 190, 1.0);
+    background: radial-gradient(ellipse at center, rgba(134, 255, 190, 1.0), rgba(16, 135, 21, 1.0));
+}
+
+@font-face {
+
+font-family: "beer";
+src: url("beer money.ttf") format("woff");
+    font-style: normal;
+    font-weight: normal;
+}
+
+.x-radio:hover {
+    box-shadow:0 0 50px lightgreen;
+}
+
+.x-radio {
+    border-color: forestgreen;
+    width: 40px;
+    border-radius: 20px;
+    color: BLACK;
+    background: rgba(134, 255, 190, 1.0);
+    background: radial-gradient(ellipse at center, rgba(134, 255, 190, 1.0), rgba(16, 135, 21, 1.0));
+}
+
+#table-plate {
+    position: relative;
+}
+
+.scroll-container {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    top: 50px;
+    width: 100%;
+    overflow-y: scroll;
+    font-size: 18px;
+}
+
+#result-table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+#result-table tr {
+    height: 1.8em;
+}
+
+#result-table tr:nth-child(2n-1) {
+    background: rgba(43, 255, 97, 1.0);
+    background: -webkit-linear-gradient(top left, rgba(43, 255, 97, 1.0), rgba(95, 208, 255, 1.0));
+    background: -moz-linear-gradient(top left, rgba(43, 255, 97, 1.0), rgba(95, 208, 255, 1.0));
+    background: linear-gradient(to bottom right, rgba(43, 255, 97, 1.0), rgba(95, 208, 255, 1.0));
+}
+
+#result-table tr:nth-child(2n):hover {
+    background: rgba(43, 255, 97, 1.0);
+    background: -webkit-linear-gradient(top left, rgba(43, 255, 97, 1.0), rgba(95, 208, 255, 1.0));
+    background: -moz-linear-gradient(top left, rgba(43, 255, 97, 1.0), rgba(95, 208, 255, 1.0));
+    background: linear-gradient(to bottom right, rgba(43, 255, 97, 1.0), rgba(95, 208, 255, 1.0));
+}
+
+#result-table tr:nth-child(2n-1):hover {
+    background: rgba(43, 255, 97, 1.0);
+    background: -webkit-linear-gradient(top left, rgba(43, 255, 97, 1.0), rgba(95, 208, 255, 1.0));
+    background: -moz-linear-gradient(top left, rgba(43, 255, 97, 1.0), rgba(95, 208, 255, 1.0));
+    background: linear-gradient(to bottom right, rgba(43, 255, 97, 1.0), rgba(95, 208, 255, 1.0));
+}
+
+#result-table tr.table-header:hover {
+    background: rgba(43, 255, 97, 1.0);
+    background: -webkit-linear-gradient(top left, rgba(43, 255, 97, 1.0), rgba(95, 208, 255, 1.0));
+    background: -moz-linear-gradient(top left, rgba(43, 255, 97, 1.0), rgba(95, 208, 255, 1.0));
+    background: linear-gradient(to bottom right, rgba(43, 255, 97, 1.0), rgba(95, 208, 255, 1.0));
+}
+
+label input[type="radio"]:checked ~ span{
+    border-color: forestgreen;
+    color: forestgreen;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='forestgreen' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
+}
+
+.coords-col {
+    width: 12%;
+}
+
+.time-col {
+    width: 25%;
+}
+
+.left-aligned {
+    font-size: 0.9em;
+    color: rgba(200, 255, 100, 200);
+    float: left;
+}
+
+.right-aligned {
+    font-size: 0.9em;
+    color: rgba(200, 255, 100, 200);
+    float: right;
+}
